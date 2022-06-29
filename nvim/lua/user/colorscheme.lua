@@ -1,10 +1,4 @@
 vim.g.tokyonight_style = "night"
-
-vim.cmd [[
-try
-  colorscheme tokyonight
-catch /^Vim\%((\a\+)\)\=:E185/
-  colorscheme default
-  set background=dark
-endtry
-]]
+vim.o.background = 'dark'
+vim.g.gruvbox_material_background = 'hard'
+vim.cmd("colorscheme gruvbox-material")

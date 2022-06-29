@@ -23,7 +23,7 @@ nvim_tree.setup {
   sort_by = "name",
   update_cwd = false,
   view = {
-      width = 30,
+      width = 35,
       height = 30,
       side = "left",
       preserve_window_proportions = false,
@@ -55,8 +55,8 @@ nvim_tree.setup {
       auto_open = true,
   },
   update_focused_file = {
-      enable = false,
-      update_cwd = false,
+      enable = true,
+      update_cwd = true,
       ignore_list = {},
   },
   ignore_ft_on_setup = {},
