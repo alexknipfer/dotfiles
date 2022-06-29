@@ -25,8 +25,6 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
-keymap("n", "<C-y>", ":call setreg('+', getline('.'))", opts)
-
 -- Find
 keymap("n", "<Esc>", ":noh<CR>", opts)
 
