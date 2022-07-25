@@ -10,6 +10,10 @@ end
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
+require"nvim-tree.events".on_file_created(function(file) vim.cmd("edit "..file.fname) end)
+-- with absolute path
+require"nvim-tree.events".on_file_created(function(file) vim.cmd("edit "..vim.fn.fnamemodify(file.fname, ":p")) end)
+
 nvim_tree.setup {
   auto_reload_on_write = true,
   disable_netrw = false,
@@ -23,7 +27,7 @@ nvim_tree.setup {
   sort_by = "name",
   update_cwd = false,
   view = {
-      width = 35,
+      width = 40,
       height = 30,
       side = "left",
       preserve_window_proportions = false,
