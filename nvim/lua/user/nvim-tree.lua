@@ -60,7 +60,7 @@ nvim_tree.setup {
   },
   update_focused_file = {
       enable = true,
-      update_cwd = true,
+      update_cwd = false,
       ignore_list = {},
   },
   ignore_ft_on_setup = {},
@@ -85,7 +85,7 @@ nvim_tree.setup {
   },
   git = {
       enable = true,
-      ignore = true,
+      ignore = false,
       timeout = 400,
   },
   actions = {
