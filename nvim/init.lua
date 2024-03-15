@@ -84,7 +84,8 @@ require("lazy").setup({
 				["<leader>k"] = { "<cmd>bdelete<CR>", "Kill Buffer" },
 				["<leader>p"] = { "<cmd>Lazy<CR>", "Plugin Manager" },
 				["<leader>q"] = { "<cmd>wqall!<CR>", "Quit" },
-				["<leader>a"] = { "<C-w>w", "Switch to next window" },
+				["<leader>]"] = { "<C-w>w", "Switch to next window" },
+				["<leader>["] = { "<C-w>p", "Switch to previous window" },
 				["<leader>m"] = { "<cmd>Mason<CR>", "Mason LSP" },
 			})
 		end,
@@ -360,7 +361,7 @@ require("lazy").setup({
 					sorter = "case_sensitive",
 				},
 				view = {
-					width = 30,
+					width = 50,
 				},
 				renderer = {
 					group_empty = true,
