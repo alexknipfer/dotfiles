@@ -26,6 +26,10 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
+vim.o.tabstop = 2 -- A TAB character looks like 4 spaces
+vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
+vim.o.softtabstop = 2 -- Number of spaces inserted instead of a TAB character
+vim.o.shiftwidth = 2 -- Number of spaces inserted when indenting
 
 -- Exit insert mode
 vim.keymap.set("i", "jk", "<Esc>")
@@ -33,7 +37,7 @@ vim.keymap.set("i", "jk", "<Esc>")
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
+vim.keymap.set("n", "<leader>o", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
@@ -87,8 +91,15 @@ require("lazy").setup({
 				["<leader>]"] = { "<C-w>w", "Switch to next window" },
 				["<leader>["] = { "<C-w>p", "Switch to previous window" },
 				["<leader>m"] = { "<cmd>Mason<CR>", "Mason LSP" },
+				["<leader>t"] = { "<cmd>TroubleToggle<CR>", "Trouble" },
+				["<leader>g"] = { "<cmd>LazyGit<CR>", "Lazy Git" },
 			})
 		end,
+	},
+	-- Trouble
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	{
 		"nvim-telescope/telescope.nvim",
@@ -249,6 +260,8 @@ require("lazy").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
 				javascript = { { "prettierd", "prettier" } },
+				typescript = { { "prettierd", "prettier" } },
+				typescriptreact = { { "prettierd", "prettier" } },
 			},
 		},
 	},
