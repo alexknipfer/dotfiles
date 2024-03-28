@@ -28,3 +28,8 @@ alias grc='git rebase --continue'
 alias gra='git rebase --abort'
 alias gec='git status | grep "both modified:" | cut -d ":" -f 2 | trim | xargs nvim -'
 alias gcan='gc --amend --no-edit'
+
+# DOCKER ALIASES ----------------------------------------------------------------
+alias de='docker exec -it'
+alias dps='docker ps'
+alias di='docker images'
