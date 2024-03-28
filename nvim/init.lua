@@ -34,6 +34,9 @@ vim.o.shiftwidth = 2 -- Number of spaces inserted when indenting
 -- Exit insert mode
 vim.keymap.set("i", "jk", "<Esc>")
 
+-- Open git blame commit url
+vim.keymap.set("n", "<leader>gcu", ":GitBlameOpenCommitURL<CR>")
+
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
@@ -64,6 +67,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	"tpope/vim-sleuth",
+	"f-person/git-blame.nvim",
 	{ "numToStr/Comment.nvim", opts = {} },
 	{
 		"lewis6991/gitsigns.nvim",
