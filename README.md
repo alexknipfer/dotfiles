@@ -7,5 +7,5 @@ This repo contains my dotfile configuration
 ```
 git clone <this-repo>
 cd <this-repo>
-./install/bootstrap.sh
+./install/bootstrap
 ```
