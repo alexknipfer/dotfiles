@@ -7,7 +7,6 @@ packages=(
   neovim
   pnpm
   wget
-  watchman
   spaceship
 )
 
