@@ -338,13 +338,10 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"tiagovla/tokyodark.nvim",
-		opts = {
-			-- custom options here
-		},
-		config = function(_, opts)
-			require("tokyodark").setup(opts) -- calling setup is optional
-			vim.cmd([[colorscheme tokyodark]])
+		"sainnhe/sonokai",
+		config = function()
+			vim.g.sonokai_style = "shusia"
+			vim.cmd.colorscheme("sonokai")
 		end,
 	},
 	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = { signs = false } },
