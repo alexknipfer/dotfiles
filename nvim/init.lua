@@ -31,6 +31,13 @@ vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a T
 vim.o.softtabstop = 2 -- Number of spaces inserted instead of a TAB character
 vim.o.shiftwidth = 2 -- Number of spaces inserted when indenting
 
+-- Github copilot
+vim.keymap.set("i", "<C-J>", 'copilot#Accept("\\<CR>")', {
+	expr = true,
+	replace_keycodes = false,
+})
+vim.g.copilot_no_tab_map = true
+
 -- Exit insert mode
 vim.keymap.set("i", "jk", "<Esc>")
 
@@ -63,6 +70,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	"github/copilot.vim",
 	"tpope/vim-sleuth",
 	{ "numToStr/Comment.nvim", opts = {} },
 	{
