@@ -72,7 +72,16 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	"github/copilot.vim",
 	"tpope/vim-sleuth",
-	{ "numToStr/Comment.nvim", opts = {} },
+	"JoosepAlviste/nvim-ts-context-commentstring",
+	{
+		"numToStr/Comment.nvim",
+		opts = {},
+		config = function()
+			require("Comment").setup({
+				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+			})
+		end,
+	},
 	{
 		"lewis6991/gitsigns.nvim",
 		opts = {
