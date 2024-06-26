@@ -33,3 +33,6 @@ alias gcan='gc --amend --no-edit'
 alias de='docker exec -it'
 alias dps='docker ps'
 alias di='docker images'
+
+# COMMON ALIASES ----------------------------------------------------------------
+alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
