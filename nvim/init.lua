@@ -99,17 +99,17 @@ require("lazy").setup({
 		event = "VeryLazy",
 		config = function()
 			require("which-key").setup()
-			require("which-key").register({
-				["<leader>e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-				["<leader>w"] = { "<cmd>w!<CR>", "Save" },
-				["<leader>k"] = { "<cmd>bdelete<CR>", "Kill Buffer" },
-				["<leader>p"] = { "<cmd>Lazy<CR>", "Plugin Manager" },
-				["<leader>q"] = { "<cmd>wqall!<CR>", "Quit" },
-				["<leader>]"] = { "<C-w>w", "Switch to next window" },
-				["<leader>["] = { "<C-w>p", "Switch to previous window" },
-				["<leader>m"] = { "<cmd>Mason<CR>", "Mason LSP" },
-				["<leader>t"] = { "<cmd>TroubleToggle<CR>", "Trouble" },
-				["<leader>g"] = { "<cmd>LazyGit<CR>", "Lazy Git" },
+			require("which-key").add({
+				{ "<leader>[", "<C-w>p", desc = "Switch to previous window" },
+				{ "<leader>]", "<C-w>w", desc = "Switch to next window" },
+				{ "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Explorer" },
+				{ "<leader>g", "<cmd>LazyGit<CR>", desc = "Lazy Git" },
+				{ "<leader>k", "<cmd>bdelete<CR>", desc = "Kill Buffer" },
+				{ "<leader>m", "<cmd>Mason<CR>", desc = "Mason LSP" },
+				{ "<leader>p", "<cmd>Lazy<CR>", desc = "Plugin Manager" },
+				{ "<leader>q", "<cmd>wqall!<CR>", desc = "Quit" },
+				{ "<leader>t", "<cmd>TroubleToggle<CR>", desc = "Trouble" },
+				{ "<leader>w", "<cmd>w!<CR>", desc = "Save" },
 			})
 		end,
 	},
@@ -381,7 +381,7 @@ require("lazy").setup({
 	{
 		"sainnhe/sonokai",
 		config = function()
-			vim.g.sonokai_style = "espresso"
+			vim.g.sonokai_style = "shusia"
 			vim.cmd.colorscheme("sonokai")
 		end,
 	},
