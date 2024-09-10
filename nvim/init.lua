@@ -38,8 +38,19 @@ vim.keymap.set("i", "<C-J>", 'copilot#Accept("\\<CR>")', {
 })
 vim.g.copilot_no_tab_map = true
 
+local function confirm_and_delete_buffer()
+	local confirm = vim.fn.confirm("Delete buffer and file?", "&Yes\n&No", 2)
+
+	if confirm == 1 then
+		os.remove(vim.fn.expand("%"))
+		vim.api.nvim_buf_delete(0, { force = true })
+	end
+end
+
 -- Exit insert mode
 vim.keymap.set("i", "jk", "<Esc>")
+
+vim.keymap.set("n", "<leader>df", confirm_and_delete_buffer)
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
@@ -415,7 +426,7 @@ require("lazy").setup({
 	{
 		"sainnhe/sonokai",
 		config = function()
-			vim.g.sonokai_style = "shusia"
+			vim.g.sonokai_style = "espresso"
 			vim.cmd.colorscheme("sonokai")
 		end,
 	},
@@ -460,6 +471,9 @@ require("lazy").setup({
 				},
 				filters = {
 					dotfiles = true,
+				},
+				update_focused_file = {
+					enable = true,
 				},
 			})
 		end,
