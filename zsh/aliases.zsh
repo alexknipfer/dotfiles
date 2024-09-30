@@ -36,3 +36,7 @@ alias di='docker images'
 
 # COMMON ALIASES ----------------------------------------------------------------
 alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
+
+# MISE EN PLACE ALIASES ---------------------------------------------------------
+alias inlts='mise install node@lts'
+alias uselts='mise use -g node@lts'
