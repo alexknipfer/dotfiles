@@ -425,10 +425,10 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"sainnhe/sonokai",
+		"sainnhe/gruvbox-material",
 		config = function()
-			vim.g.sonokai_style = "espresso"
-			vim.cmd.colorscheme("sonokai")
+			vim.g.gruvbox_material_background = "hard"
+			vim.cmd.colorscheme("gruvbox-material")
 		end,
 	},
 	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = { signs = false } },
