@@ -84,6 +84,7 @@ require("lazy").setup({
 	"github/copilot.vim",
 	"tpope/vim-sleuth",
 	"JoosepAlviste/nvim-ts-context-commentstring",
+	"dmmulroy/ts-error-translator.nvim",
 	{
 		"numToStr/Comment.nvim",
 		opts = {},
