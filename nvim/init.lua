@@ -86,6 +86,26 @@ require("lazy").setup({
 	"JoosepAlviste/nvim-ts-context-commentstring",
 	"dmmulroy/ts-error-translator.nvim",
 	{
+		"echasnovski/mini.indentscope",
+		config = function()
+			require("mini.indentscope").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.icons",
+		opts = {},
+		lazy = true,
+		specs = {
+			{ "nvim-tree/nvim-web-devicons", enabled = false, optional = true },
+		},
+		init = function()
+			package.preload["nvim-web-devicons"] = function()
+				require("mini.icons").mock_nvim_web_devicons()
+				return package.loaded["nvim-web-devicons"]
+			end
+		end,
+	},
+	{
 		"numToStr/Comment.nvim",
 		opts = {},
 		config = function()
@@ -105,25 +125,6 @@ require("lazy").setup({
 				changedelete = { text = "~" },
 			},
 		},
-	},
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("which-key").setup()
-			require("which-key").add({
-				{ "<leader>[", "<C-w>p", desc = "Switch to previous window" },
-				{ "<leader>]", "<C-w>w", desc = "Switch to next window" },
-				{ "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Explorer" },
-				{ "<leader>g", "<cmd>LazyGit<CR>", desc = "Lazy Git" },
-				{ "<leader>k", "<cmd>bdelete<CR>", desc = "Kill Buffer" },
-				{ "<leader>m", "<cmd>Mason<CR>", desc = "Mason LSP" },
-				{ "<leader>p", "<cmd>Lazy<CR>", desc = "Plugin Manager" },
-				{ "<leader>q", "<cmd>wqall!<CR>", desc = "Quit" },
-				{ "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
-				{ "<leader>w", "<cmd>w!<CR>", desc = "Save" },
-			})
-		end,
 	},
 	-- Trouble
 	{
@@ -200,7 +201,6 @@ require("lazy").setup({
 				end,
 			},
 			{ "nvim-telescope/telescope-ui-select.nvim" },
-			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 		},
 		config = function()
 			require("telescope").setup({
@@ -492,23 +492,6 @@ require("lazy").setup({
 		-- optional for floating window border decoration
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-		},
-	},
-	{
-		"smoka7/multicursors.nvim",
-		event = "VeryLazy",
-		dependencies = {
-			"smoka7/hydra.nvim",
-		},
-		opts = {},
-		cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
-		keys = {
-			{
-				mode = { "v", "n" },
-				"<Leader>c",
-				"<cmd>MCstart<cr>",
-				desc = "Create a selection for selected text or word under the cursor",
-			},
 		},
 	},
 })
