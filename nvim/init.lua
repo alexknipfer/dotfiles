@@ -451,7 +451,6 @@ require("lazy").setup({
 			require("mini.ai").setup({ n_lines = 500 })
 			require("mini.surround").setup()
 			require("mini.statusline").setup()
-			require("mini.indentscope").setup()
 			MiniStatusline.section_location = function()
 				return "%2l:%-2v"
 			end
