@@ -84,7 +84,12 @@ require("lazy").setup({
 	"github/copilot.vim",
 	"tpope/vim-sleuth",
 	"JoosepAlviste/nvim-ts-context-commentstring",
-	"dmmulroy/ts-error-translator.nvim",
+	{
+		"dmmulroy/ts-error-translator.nvim",
+		config = function()
+			require("ts-error-translator").setup()
+		end,
+	},
 	{
 		"numToStr/Comment.nvim",
 		opts = {},
@@ -492,23 +497,6 @@ require("lazy").setup({
 		-- optional for floating window border decoration
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-		},
-	},
-	{
-		"smoka7/multicursors.nvim",
-		event = "VeryLazy",
-		dependencies = {
-			"smoka7/hydra.nvim",
-		},
-		opts = {},
-		cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
-		keys = {
-			{
-				mode = { "v", "n" },
-				"<Leader>c",
-				"<cmd>MCstart<cr>",
-				desc = "Create a selection for selected text or word under the cursor",
-			},
 		},
 	},
 })
