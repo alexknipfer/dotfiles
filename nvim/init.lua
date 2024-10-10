@@ -47,10 +47,21 @@ local function confirm_and_delete_buffer()
 	end
 end
 
--- Exit insert mode
+-- General keymaps
 vim.keymap.set("i", "jk", "<Esc>")
+vim.keymap.set("n", "<leader>g", "<cmd>LazyGit<CR>", { desc = "Open [G]it interface" })
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Explorer" })
+vim.keymap.set("n", "<leader>m", "<cmd>Mason<CR>", { desc = "Mason LSP" })
+vim.keymap.set("n", "<leader>p", "<cmd>Lazy<CR>", { desc = "Plugin Manager" })
+vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
 
+-- Buffer keymaps
 vim.keymap.set("n", "<leader>df", confirm_and_delete_buffer)
+vim.keymap.set("n", "<leader>k", "<cmd>bdelete<CR>", { desc = "Kill Buffer" })
+
+-- Window navigation keymaps
+vim.keymap.set("n", "<leader>[", "<C-w>p", { desc = "Switch to previous window" })
+vim.keymap.set("n", "<leader>]", "<C-w>w", { desc = "Switch to next window" })
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
@@ -110,25 +121,6 @@ require("lazy").setup({
 				changedelete = { text = "~" },
 			},
 		},
-	},
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("which-key").setup()
-			require("which-key").add({
-				{ "<leader>[", "<C-w>p", desc = "Switch to previous window" },
-				{ "<leader>]", "<C-w>w", desc = "Switch to next window" },
-				{ "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Explorer" },
-				{ "<leader>g", "<cmd>LazyGit<CR>", desc = "Lazy Git" },
-				{ "<leader>k", "<cmd>bdelete<CR>", desc = "Kill Buffer" },
-				{ "<leader>m", "<cmd>Mason<CR>", desc = "Mason LSP" },
-				{ "<leader>p", "<cmd>Lazy<CR>", desc = "Plugin Manager" },
-				{ "<leader>q", "<cmd>wqall!<CR>", desc = "Quit" },
-				{ "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
-				{ "<leader>w", "<cmd>w!<CR>", desc = "Save" },
-			})
-		end,
 	},
 	-- Trouble
 	{
@@ -205,7 +197,6 @@ require("lazy").setup({
 				end,
 			},
 			{ "nvim-telescope/telescope-ui-select.nvim" },
-			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 		},
 		config = function()
 			require("telescope").setup({
@@ -430,6 +421,8 @@ require("lazy").setup({
 			})
 		end,
 	},
+
+	-- Theme
 	{
 		"sainnhe/gruvbox-material",
 		config = function()
@@ -438,18 +431,33 @@ require("lazy").setup({
 		end,
 	},
 	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = { signs = false } },
+
+	-- Mini.nvim
 	{
 		"echasnovski/mini.nvim",
+		lazy = true,
+		opts = {},
+		specs = {
+			{ "nvim-tree/nvim-web-devicons", enabled = false, optional = true },
+		},
+		init = function()
+			-- Mocking nvim-web-devicons using mini.icons
+			package.preload["nvim-web-devicons"] = function()
+				require("mini.icons").mock_nvim_web_devicons()
+				return package.loaded["nvim-web-devicons"]
+			end
+		end,
 		config = function()
 			require("mini.ai").setup({ n_lines = 500 })
 			require("mini.surround").setup()
 			require("mini.statusline").setup()
+			require("mini.indentscope").setup()
 			MiniStatusline.section_location = function()
 				return "%2l:%-2v"
 			end
 		end,
 	},
-
+	--
 	-- Syntax Highlighting
 	{
 		"nvim-treesitter/nvim-treesitter",
