@@ -201,7 +201,7 @@ require("lazy").setup({
 		config = function()
 			require("telescope").setup({
 				defaults = {
-					file_ignore_patterns = { ".git/", "node%_modules/.*", "dist/.*" },
+					file_ignore_patterns = { ".git/" },
 				},
 				extensions = {
 					["ui-select"] = {
