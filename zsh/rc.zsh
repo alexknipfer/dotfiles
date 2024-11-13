@@ -13,6 +13,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Set the theme for your Zsh prompt
 ZSH_THEME="spaceship"
 SPACESHIP_PACKAGE_SHOW=false
+SPACESHIP_DOCKER_SHOW=false
 
 # Configure plugins for Zsh
 plugins=(
