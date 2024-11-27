@@ -8,6 +8,8 @@ packages=(
   pnpm
   wget
   spaceship
+  tmux
+  fzf
 )
 
 casks=(

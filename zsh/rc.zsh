@@ -6,6 +6,7 @@ source_if_exists () {
 
 source_if_exists $HOME/.env.sh
 source_if_exists $DOTFILES/zsh/aliases.zsh
+export PATH="$PATH:$HOME/.local/bin"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -36,3 +37,5 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Activate mise for Zsh
 eval "$(/opt/homebrew/bin/mise activate zsh)"
+
+bindkey -s '^f' 'tmux-sessionizer\n'

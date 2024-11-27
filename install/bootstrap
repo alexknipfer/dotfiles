@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+ g!/usr/bin/env bash
 
 cd "$(dirname "$0")/.."
 DOTFILES=$(pwd -P)
@@ -141,8 +141,14 @@ create_env_file () {
     fi
 }
 
+chmod_scripts() {
+  echo "Making scripts executable..."
+  find "$DOTFILES/scripts" -type f -exec chmod +x {} \;
+}
+
 install_dotfiles
 create_env_file
+chmod_scripts
 
 echo ''
 echo ''
