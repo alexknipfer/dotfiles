@@ -348,10 +348,11 @@ require("lazy").setup({
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = {},
-				javascriptreact = {},
-				typescript = {},
+				javascript = { "prettierd" },
+				javascriptreact = { "prettierd" },
+				typescript = { "prettierd" },
 				typescriptreact = {},
+				json = { "prettierd" },
 			},
 		},
 	},
@@ -424,10 +425,12 @@ require("lazy").setup({
 
 	-- Theme
 	{
-		"sainnhe/gruvbox-material",
+		"rebelot/kanagawa.nvim",
 		config = function()
-			vim.g.gruvbox_material_background = "hard"
-			vim.cmd.colorscheme("gruvbox-material")
+			-- Set background option to ensure correct theme is applied
+			vim.o.background = "dark" -- or "light" depending on your preference
+			-- Load the KANAGAWA colorscheme
+			vim.cmd.colorscheme("kanagawa-dragon") -- You can also specify wave, dragon, or lotus if desired
 		end,
 	},
 	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = { signs = false } },
