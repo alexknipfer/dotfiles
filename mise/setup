@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-mise use -g python@3
-mise use -g node@lts-iron

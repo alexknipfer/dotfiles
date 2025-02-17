@@ -1,0 +1,5 @@
+[alias.node.versions]
+lts = '22'
+
+[tools]
+node = "lts"
