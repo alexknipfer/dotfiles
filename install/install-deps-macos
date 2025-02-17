@@ -7,9 +7,9 @@ packages=(
   neovim
   pnpm
   wget
-  spaceship
   tmux
   fzf
+  ripgrep
 )
 
 casks=(
