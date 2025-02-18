@@ -272,6 +272,11 @@ $("h1").each(function() {
 	<dict>
 		<key>installed</key>
 		<dict>
+			<key>http://kapeli.com/feeds/Apple_API_Reference.xml</key>
+			<dict>
+				<key>date</key>
+				<date>2025-02-18T04:18:20Z</date>
+			</dict>
 			<key>http://kapeli.com/feeds/CSS.xml</key>
 			<dict>
 				<key>date</key>
@@ -304,13 +309,7 @@ $("h1").each(function() {
 			</dict>
 		</dict>
 		<key>uninstalled</key>
-		<dict>
-			<key>http://kapeli.com/feeds/Apple_API_Reference.xml</key>
-			<dict>
-				<key>date</key>
-				<date>2025-02-18T02:03:20Z</date>
-			</dict>
-		</dict>
+		<dict/>
 	</dict>
 	<key>isPinned</key>
 	<true/>
