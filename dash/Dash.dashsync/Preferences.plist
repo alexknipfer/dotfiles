@@ -280,7 +280,7 @@ $("h1").each(function() {
 			<key>http://kapeli.com/feeds/CSS.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2025-02-18T04:09:16Z</date>
+				<date>2025-02-18T04:21:46Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/HTML.xml</key>
 			<dict>
