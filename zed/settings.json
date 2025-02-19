@@ -21,18 +21,6 @@
   "git": {
     "git_gutter": "tracked_files"
   },
-  "languages": {
-    "TypeScript": {
-      "code_actions_on_format": {
-        "source.organizeImports": true
-      }
-    },
-    "TSX": {
-      "code_actions_on_format": {
-        "source.organizeImports": true
-      }
-    }
-  },
   "lsp": {
     "typescript-language-server": {
       "initialization_options": {
