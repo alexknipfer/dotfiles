@@ -176,37 +176,10 @@ $("h1").each(function() {
 	<dict>
 		<key>installed</key>
 		<dict>
-			<key>Tailwind_CSS</key>
-			<dict>
-				<key>date</key>
-				<date>2025-02-18T01:46:51Z</date>
-				<key>entry</key>
-				<dict>
-					<key>aliases</key>
-					<array>
-						<string>tailwind</string>
-						<string>TailwindCSS</string>
-						<string>tailwind CSS</string>
-					</array>
-					<key>authorLinkHref</key>
-					<string>https://github.com/Kapeli/Dash-User-Contributions/tree/master/docsets/Tailwind_CSS#readme</string>
-					<key>authorLinkText</key>
-					<string>Ben Booth, Guill Lo, Akinori Musha</string>
-					<key>name</key>
-					<string>Tailwind CSS</string>
-					<key>platform</key>
-					<string>usercontribTailwind_CSS</string>
-					<key>uniqueIdentifier</key>
-					<string>Tailwind_CSS</string>
-				</dict>
-			</dict>
-		</dict>
-		<key>uninstalled</key>
-		<dict>
 			<key>Jest</key>
 			<dict>
 				<key>date</key>
-				<date>2025-02-11T18:43:47Z</date>
+				<date>2025-02-18T16:30:49Z</date>
 				<key>entry</key>
 				<dict>
 					<key>aliases</key>
@@ -234,7 +207,33 @@ $("h1").each(function() {
 					<string>Jest</string>
 				</dict>
 			</dict>
+			<key>Tailwind_CSS</key>
+			<dict>
+				<key>date</key>
+				<date>2025-02-18T01:46:51Z</date>
+				<key>entry</key>
+				<dict>
+					<key>aliases</key>
+					<array>
+						<string>tailwind</string>
+						<string>TailwindCSS</string>
+						<string>tailwind CSS</string>
+					</array>
+					<key>authorLinkHref</key>
+					<string>https://github.com/Kapeli/Dash-User-Contributions/tree/master/docsets/Tailwind_CSS#readme</string>
+					<key>authorLinkText</key>
+					<string>Ben Booth, Guill Lo, Akinori Musha</string>
+					<key>name</key>
+					<string>Tailwind CSS</string>
+					<key>platform</key>
+					<string>usercontribTailwind_CSS</string>
+					<key>uniqueIdentifier</key>
+					<string>Tailwind_CSS</string>
+				</dict>
+			</dict>
 		</dict>
+		<key>uninstalled</key>
+		<dict/>
 	</dict>
 	<key>bookmarks</key>
 	<array>
@@ -323,7 +322,7 @@ $("h1").each(function() {
 			<key>name</key>
 			<string>Default</string>
 			<key>searchSnippets</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>icon</key>
