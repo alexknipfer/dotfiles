@@ -296,6 +296,11 @@ $("h1").each(function() {
 				<key>date</key>
 				<date>2025-02-18T01:47:10Z</date>
 			</dict>
+			<key>http://kapeli.com/feeds/NodeJS.xml</key>
+			<dict>
+				<key>date</key>
+				<date>2025-02-20T13:39:13Z</date>
+			</dict>
 			<key>http://kapeli.com/feeds/PostgreSQL.xml</key>
 			<dict>
 				<key>date</key>
