@@ -43,6 +43,12 @@ local nmap_leader = function(suffix, rhs, desc, opts)
 	vim.keymap.set("n", "<Leader>" .. suffix, rhs, opts)
 end
 
+local map = function(suffix, rhs, desc, opts)
+	opts = opts or {}
+	opts.desc = desc
+	vim.keymap.set("n", suffix, rhs, opts)
+end
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
@@ -90,9 +96,11 @@ now(function()
 	vim.g.loaded_netrw = 1
 	vim.g.loaded_netrwPlugin = 1
 	vim.opt.termguicolors = true
-	vim.opt.completeopt = "menu,menuone,noselect"
-	vim.opt.tabstop = 4
-	vim.opt.shiftwidth = 4
+	vim.opt.completeopt = "menu,menuone,noinsert"
+	vim.o.tabstop = 2 -- A TAB character looks like 4 spaces
+	vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
+	vim.o.softtabstop = 2 -- Number of spaces inserted instead of a TAB character
+	vim.o.shiftwidth = 2 -- Number of spaces inserted when indenting
 end)
 
 -- Keymaps
@@ -133,6 +141,7 @@ now(function()
 	nmap_leader("go", "<Cmd>lua MiniDiff.toggle_overlay()<CR>", "Toggle overlay")
 	nmap_leader("gs", "<Cmd>lua MiniGit.show_at_cursor()<CR>", "Show at cursor")
 	nmap_leader("lc", "<Cmd>GitConflictListQf<cr>", "List Conflicts")
+	nmap_leader("gb", "<Cmd>GitBlameCopySHA<cr>", "Open Git Blame Commit")
 
 	-- LSP Keymaps
 	nmap_leader("la", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Arguments popup")
@@ -143,7 +152,7 @@ now(function()
 	nmap_leader("lk", "<Cmd>lua vim.diagnostic.goto_prev()<CR>", "Prev diagnostic")
 	nmap_leader("lR", "<Cmd>lua vim.lsp.buf.references()<CR>", "References")
 	nmap_leader("lr", "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename")
-	nmap_leader("ls", "<Cmd>lua vim.lsp.buf.definition()<CR>", "Source definition")
+	map("gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", "Source definition")
 	nmap_leader("ca", "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Code action")
 	nmap_leader("m", "<cmd>Mason<CR>", "Mason LSP")
 
@@ -166,8 +175,7 @@ now(function()
 	nmap_leader("fL", '<Cmd>Pick buf_lines scope="current"<CR>', "Lines (current)")
 	nmap_leader("fm", "<Cmd>Pick git_hunks<CR>", "Modified hunks (all)")
 	nmap_leader("fM", '<Cmd>Pick git_hunks path="%"<CR>', "Modified hunks (current)")
-	nmap_leader("fr", "<Cmd>Pick resume<CR>", "Resume")
-	nmap_leader("fR", '<Cmd>Pick lsp scope="references"<CR>', "References (LSP)")
+	nmap_leader("fr", '<Cmd>Pick lsp scope="references"<CR>', "References (LSP)")
 	nmap_leader("fs", '<Cmd>Pick lsp scope="workspace_symbol"<CR>', "Symbols workspace (LSP)")
 	nmap_leader("fS", '<Cmd>Pick lsp scope="document_symbol"<CR>', "Symbols buffer (LSP)")
 	nmap_leader("fv", '<Cmd>Pick visit_paths cwd=""<CR>', "Visit paths (all)")
@@ -422,7 +430,6 @@ later(function()
 	require("mini.pick").setup({ window = { config = { border = "double" } } })
 
 	vim.ui.select = MiniPick.ui_select
-	vim.keymap.set("n", "/", [[<Cmd>Pick buf_lines scope='current'<CR>]], { nowait = true })
 end)
 
 later(function()
@@ -471,7 +478,7 @@ now(function()
 			sorter = "case_sensitive",
 		},
 		view = {
-			width = "30%",
+			width = 50,
 		},
 		renderer = {
 			group_empty = true,
@@ -533,6 +540,16 @@ later(function()
 			changedelete = { text = "~" },
 		},
 	})
+end)
+
+-- GitHub Copilot
+later(function()
+	add("github/copilot.vim")
+	vim.keymap.set("i", "<C-J>", 'copilot#Accept("\\<CR>")', {
+		expr = true,
+		replace_keycodes = false,
+	})
+	vim.g.copilot_no_tab_map = true
 end)
 
 -- LSP
