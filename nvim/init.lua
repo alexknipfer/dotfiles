@@ -144,6 +144,7 @@ now(function()
 	nmap_leader("lR", "<Cmd>lua vim.lsp.buf.references()<CR>", "References")
 	nmap_leader("lr", "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename")
 	nmap_leader("ls", "<Cmd>lua vim.lsp.buf.definition()<CR>", "Source definition")
+	nmap_leader("ca", "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Code action")
 	nmap_leader("m", "<cmd>Mason<CR>", "Mason LSP")
 
 	-- Search Keymaps
@@ -199,19 +200,9 @@ end)
 
 -- Colorscheme
 now(function()
-	add("maxmx03/fluoromachine.nvim")
-	local fm = require("fluoromachine")
-
-	fm.setup({
-		glow = false,
-		theme = "retrowave",
-	})
-
-	vim.cmd("colorscheme fluoromachine")
-	vim.cmd("hi PmenuMatch gui=bold")
-	vim.cmd("hi PmenuMatchSel gui=bold")
-	vim.cmd("hi! link @string.special.vimdoc Constant")
-	vim.cmd.hi("Comment gui=none")
+	add("rebelot/kanagawa.nvim")
+	vim.o.background = "dark"
+	vim.cmd.colorscheme("kanagawa-dragon")
 	vim.api.nvim_set_hl(0, "DiffText", { fg = "#ffffff", bg = "#1d3b40" })
 	vim.api.nvim_set_hl(0, "DiffAdd", { fg = "#ffffff", bg = "#1d3450" })
 end)
@@ -348,9 +339,6 @@ later(function()
 		mappings = {
 			windows = true,
 			move_with_alt = true,
-		},
-		autocommands = {
-			relnum_in_visual_mode = true,
 		},
 	})
 
