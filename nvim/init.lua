@@ -318,10 +318,15 @@ require("lazy").setup({
 			require("mason").setup()
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
-				"stylua", -- Used to format lua code
+				"stylua",
+				"prettierd",
+				"eslint",
+				"ts_ls",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 			require("mason-lspconfig").setup({
+				ensure_installed = {},
+				automatic_installation = false,
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
@@ -436,13 +441,9 @@ require("lazy").setup({
 	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = { signs = false } },
 
 	-- Mini.nvim
-	{
 		"echasnovski/mini.nvim",
 		lazy = true,
 		opts = {},
-		specs = {
-			{ "nvim-tree/nvim-web-devicons", enabled = false, optional = true },
-		},
 		init = function()
 			-- Mocking nvim-web-devicons using mini.icons
 			package.preload["nvim-web-devicons"] = function()
