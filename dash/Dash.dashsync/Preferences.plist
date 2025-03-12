@@ -311,6 +311,11 @@ $("h1").each(function() {
 				<key>date</key>
 				<date>2025-02-18T04:15:08Z</date>
 			</dict>
+			<key>http://kapeli.com/feeds/TypeScript.xml</key>
+			<dict>
+				<key>date</key>
+				<date>2025-02-26T14:53:45Z</date>
+			</dict>
 		</dict>
 		<key>uninstalled</key>
 		<dict/>
