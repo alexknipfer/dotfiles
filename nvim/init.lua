@@ -96,7 +96,6 @@ now(function()
 	vim.g.loaded_netrw = 1
 	vim.g.loaded_netrwPlugin = 1
 	vim.opt.termguicolors = true
-	vim.opt.completeopt = "menu,menuone,noinsert"
 	vim.o.tabstop = 2 -- A TAB character looks like 4 spaces
 	vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
 	vim.o.softtabstop = 2 -- Number of spaces inserted instead of a TAB character
@@ -140,8 +139,8 @@ now(function()
 	nmap_leader("gL", "<Cmd>Git log --oneline --follow -- %<CR>", "Log buffer")
 	nmap_leader("go", "<Cmd>lua MiniDiff.toggle_overlay()<CR>", "Toggle overlay")
 	nmap_leader("gs", "<Cmd>lua MiniGit.show_at_cursor()<CR>", "Show at cursor")
+	nmap_leader("gh", "<Cmd>lua MiniGit.show_range_history()<CR>", "Show range history")
 	nmap_leader("lc", "<Cmd>GitConflictListQf<cr>", "List Conflicts")
-	nmap_leader("gb", "<Cmd>GitBlameCopySHA<cr>", "Open Git Blame Commit")
 
 	-- LSP Keymaps
 	nmap_leader("la", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Arguments popup")
@@ -375,6 +374,8 @@ later(function()
 			signature = { border = "double" },
 		},
 	})
+
+	-- vim.o.completeopt = "menuone,noinsert"
 end)
 
 later(function()
@@ -457,17 +458,6 @@ later(function()
 
 	vim.cmd([[highlight PackageInfoUpToDateVersion guifg=]] .. "#0DB9D7")
 	vim.cmd([[highlight PackageInfoOutdatedVersion guifg=]] .. "#d19a66")
-end)
-
--- GitBlame inline
-later(function()
-	add("f-person/git-blame.nvim")
-	require("gitblame").setup({
-		enabled = true,
-		message_template = " <summary> • <date> • <author>",
-		date_format = "%m-%d-%Y",
-		virtual_text_column = 1,
-	})
 end)
 
 -- NvimTree
@@ -574,7 +564,7 @@ later(function()
 
 	require("mason").setup({})
 	require("mason-lspconfig").setup({
-		ensure_installed = { "ts_ls", "angularls", "tailwindcss" },
+		ensure_installed = { "ts_ls", "tailwindcss" },
 		automatic_installation = true,
 	})
 
@@ -616,8 +606,6 @@ later(function()
 			yaml = { "prettierd", "prettier", stop_after_first = true },
 			markdown = { "prettierd", "prettier", stop_after_first = true },
 			htmlangular = { "prettierd", "prettier", stop_after_first = true },
-			heex = { "mix" },
-			surface = { "mix" },
 		},
 	})
 end)
