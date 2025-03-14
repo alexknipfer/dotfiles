@@ -141,7 +141,7 @@ now(function()
 	nmap_leader("gs", "<Cmd>lua MiniGit.show_at_cursor()<CR>", "Show at cursor")
 	nmap_leader("gh", "<Cmd>lua MiniGit.show_range_history()<CR>", "Show range history")
 	nmap_leader("lc", "<Cmd>GitConflictListQf<cr>", "List Conflicts")
-	nmap_leader("lg", "<cmd>LazyGit<cr>", "LazyGit")
+	nmap_leader("g", "<cmd>LazyGit<cr>", "LazyGit")
 
 	-- LSP Keymaps
 	nmap_leader("la", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Arguments popup")
