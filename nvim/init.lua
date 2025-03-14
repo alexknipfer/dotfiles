@@ -62,7 +62,7 @@ add({ name = "mini.nvim", checkout = "HEAD" })
 
 -- General settings
 now(function()
-	-- Angular Highlighting
+	-- -- Angular Highlighting
 	vim.filetype.add({
 		pattern = {
 			[".*%.component%.html"] = "htmlangular",
@@ -141,6 +141,7 @@ now(function()
 	nmap_leader("gs", "<Cmd>lua MiniGit.show_at_cursor()<CR>", "Show at cursor")
 	nmap_leader("gh", "<Cmd>lua MiniGit.show_range_history()<CR>", "Show range history")
 	nmap_leader("lc", "<Cmd>GitConflictListQf<cr>", "List Conflicts")
+	nmap_leader("lg", "<cmd>LazyGit<cr>", "LazyGit")
 
 	-- LSP Keymaps
 	nmap_leader("la", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Arguments popup")
@@ -156,8 +157,8 @@ now(function()
 	nmap_leader("m", "<cmd>Mason<CR>", "Mason LSP")
 
 	-- Search Keymaps
-	nmap_leader("f/", '<Cmd>Pick history scope="/"<CR>', '"/" history')
-	nmap_leader("f:", '<Cmd>Pick history scope=":"<CR>', '":" history')
+	-- nmap_leader("f/", '<Cmd>Pick history scope="/"<CR>', '"/" history')
+	-- nmap_leader("f:", '<Cmd>Pick history scope=":"<CR>', '":" history')
 	nmap_leader("fa", '<Cmd>Pick git_hunks scope="staged"<CR>', "Added hunks (all)")
 	nmap_leader("fA", '<Cmd>Pick git_hunks path="%" scope="staged"<CR>', "Added hunks (current)")
 	nmap_leader("fb", "<Cmd>Pick buffers<CR>", "Buffers")
@@ -192,10 +193,6 @@ now(function()
 	)
 	nmap_leader("ep", '<Cmd>lua MiniFiles.open(vim.fn.stdpath("data").."/site/pack/deps/opt")<CR>', "Plugins directory")
 
-	-- Terminal
-	nmap_leader("tt", "<cmd>ToggleTerm direction=float<cr>", "Open floating terminal")
-	vim.keymap.set("t", "jk", [[<C-\><C-n>]])
-
 	-- MiniMap
 	nmap_leader("zc", "<Cmd>lua MiniMap.close()<CR>", "Close")
 	nmap_leader("zf", "<Cmd>lua MiniMap.toggle_focus()<CR>", "Focus (toggle)")
@@ -207,9 +204,9 @@ end)
 
 -- Colorscheme
 now(function()
-	add("rebelot/kanagawa.nvim")
-	vim.o.background = "dark"
-	vim.cmd.colorscheme("kanagawa-dragon")
+	add("sainnhe/gruvbox-material")
+	vim.g.gruvbox_material_background = "hard"
+	vim.cmd.colorscheme("gruvbox-material")
 	vim.api.nvim_set_hl(0, "DiffText", { fg = "#ffffff", bg = "#1d3b40" })
 	vim.api.nvim_set_hl(0, "DiffAdd", { fg = "#ffffff", bg = "#1d3450" })
 end)
@@ -357,7 +354,7 @@ later(function()
 
 	require("mini.completion").setup({
 		fallback_action = "<C-x><C-n>",
-		set_vim_setting = true,
+		set_vim_setting = false,
 		lsp_completion = {
 			source_func = "omnifunc",
 			auto_setup = true,
@@ -375,7 +372,7 @@ later(function()
 		},
 	})
 
-	-- vim.o.completeopt = "menuone,noinsert"
+	vim.o.completeopt = "menuone,noinsert"
 end)
 
 later(function()
@@ -428,9 +425,12 @@ later(function()
 end)
 
 later(function()
-	require("mini.pick").setup({ window = { config = { border = "double" } } })
+	require("mini.pick").setup({
+		window = { config = { border = "double" } },
+	})
 
 	vim.ui.select = MiniPick.ui_select
+	vim.keymap.set("n", "f/", [[<Cmd>Pick buf_lines scope='current'<CR>]], { nowait = true })
 end)
 
 later(function()
@@ -610,8 +610,17 @@ later(function()
 	})
 end)
 
--- Toggle Term
+-- LazyGit
 later(function()
-	add({ source = "akinsho/toggleterm.nvim", version = "*", config = true })
-	require("toggleterm").setup()
+	add({
+		source = "kdheepak/lazygit.nvim",
+		cmd = {
+			"LazyGit",
+			"LazyGitConfig",
+			"LazyGitCurrentFile",
+			"LazyGitFilter",
+			"LazyGitFilterCurrentFile",
+		},
+		depends = { "nvim-lua/plenary.nvim" },
+	})
 end)
