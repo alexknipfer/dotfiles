@@ -237,7 +237,13 @@ later(function()
 end)
 
 later(function()
-	require("mini.comment").setup()
+	require("mini.comment").setup({
+		options = {
+			custom_commentstring = function()
+				return require("ts_context_commentstring").calculate_commentstring() or vim.bo.commentstring
+			end,
+		},
+	})
 end)
 
 later(function()
@@ -353,7 +359,7 @@ later(function()
 
 	require("mini.completion").setup({
 		fallback_action = "<C-x><C-n>",
-		set_vim_setting = false,
+		set_vim_setting = true,
 		lsp_completion = {
 			source_func = "omnifunc",
 			auto_setup = true,
@@ -371,7 +377,7 @@ later(function()
 		},
 	})
 
-	vim.o.completeopt = "menuone,noinsert"
+	-- vim.o.completeopt = "menuone,noinsert"
 end)
 
 later(function()
@@ -438,6 +444,10 @@ later(function()
 end)
 
 -- Dependencies ===============================================================
+
+later(function()
+	add("JoosepAlviste/nvim-ts-context-commentstring")
+end)
 
 -- Git Conflicts
 later(function()
@@ -532,7 +542,7 @@ later(function()
 end)
 
 -- GitHub Copilot
-later(function()
+now(function()
 	add("github/copilot.vim")
 	vim.keymap.set("i", "<C-J>", 'copilot#Accept("\\<CR>")', {
 		expr = true,
