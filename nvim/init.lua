@@ -224,10 +224,6 @@ now(function()
 	require("mini.statusline").setup()
 end)
 
-now(function()
-	require("mini.tabline").setup()
-end)
-
 later(function()
 	require("mini.bracketed").setup()
 end)
