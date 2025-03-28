@@ -57,6 +57,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+vim.api.nvim_create_user_command("ReplaceAfterCursor", function()
+	local find = vim.fn.input("Find: ")
+	local replace = vim.fn.input("Replace with: ")
+	local flags = "gc" -- 'g' for global, 'c' for confirmation
+	local line = vim.fn.line(".")
+	local col = vim.fn.col(".")
+	vim.cmd(line .. ",$s/" .. find .. "/" .. replace .. "/" .. flags)
+	vim.fn.cursor(line, col)
+end, {})
+
 -- Mini.nvim ==================================================================
 add({ name = "mini.nvim", checkout = "HEAD" })
 
@@ -115,6 +125,9 @@ now(function()
 
 	imap_expr("<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]])
 	imap_expr("<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]])
+
+	-- Custom commands
+	nmap_leader("R", "<Cmd>ReplaceAfterCursor<CR>", "Find and replace after cursor")
 
 	-- Buffer keymaps
 	nmap_leader("[", "<C-w>w", "Switch to previous Window")
@@ -403,6 +416,7 @@ end)
 later(function()
 	local hipatterns = require("mini.hipatterns")
 	local hi_words = MiniExtra.gen_highlighter.words
+
 	hipatterns.setup({
 		highlighters = {
 			fixme = hi_words({ "FIXME", "Fixme", "fixme" }, "MiniHipatternsFixme"),
