@@ -205,14 +205,6 @@ now(function()
 		"Mini.nvim directory"
 	)
 	nmap_leader("ep", '<Cmd>lua MiniFiles.open(vim.fn.stdpath("data").."/site/pack/deps/opt")<CR>', "Plugins directory")
-
-	-- MiniMap
-	nmap_leader("zc", "<Cmd>lua MiniMap.close()<CR>", "Close")
-	nmap_leader("zf", "<Cmd>lua MiniMap.toggle_focus()<CR>", "Focus (toggle)")
-	nmap_leader("zo", "<Cmd>lua MiniMap.open()<CR>", "Open")
-	nmap_leader("zr", "<Cmd>lua MiniMap.refresh()<CR>", "Refresh")
-	nmap_leader("zs", "<Cmd>lua MiniMap.toggle_side()<CR>", "Side (toggle)")
-	nmap_leader("zt", "<Cmd>lua MiniMap.toggle()<CR>", "Toggle")
 end)
 
 -- Colorscheme
@@ -317,29 +309,6 @@ later(function()
 end)
 
 later(function()
-	require("mini.map").setup()
-
-	local map = require("mini.map")
-	local gen_integr = map.gen_integration
-	local encode_symbols = map.gen_encode_symbols.block("3x2")
-
-	if vim.startswith(vim.fn.getenv("TERM"), "st") then
-		encode_symbols = map.gen_encode_symbols.dot("4x2")
-	end
-
-	map.setup({
-		symbols = { encode = encode_symbols },
-		integrations = { gen_integr.builtin_search(), gen_integr.diff(), gen_integr.diagnostic() },
-	})
-
-	vim.keymap.set("n", [[\h]], ":let v:hlsearch = 1 - v:hlsearch<CR>", { desc = "Toggle hlsearch" })
-
-	for _, key in ipairs({ "n", "N", "*" }) do
-		vim.keymap.set("n", key, key .. "zv<Cmd>lua MiniMap.refresh({}, { lines = false, scrollbar = false })<CR>")
-	end
-end)
-
-later(function()
 	local ai = require("mini.ai")
 	ai.setup({
 		custom_textobjects = {
@@ -417,6 +386,23 @@ later(function()
 	local hipatterns = require("mini.hipatterns")
 	local hi_words = MiniExtra.gen_highlighter.words
 
+	-- Returns hex color group for matching rgba() color
+	-- or false if alpha is nil or out of range.
+	-- The use of the alpha value refers to a black background.
+	--
+	---@param match string
+	---@return string|false
+	local rgba_color = function(_, match)
+		local style = "bg" -- 'fg' or 'bg', for extmark_opts_inline use 'fg'
+		local red, green, blue, alpha = match:match("rgba%((%d+), ?(%d+), ?(%d+), ?(%d*%.?%d*)%)")
+		alpha = tonumber(alpha)
+		if alpha == nil or alpha < 0 or alpha > 1 then
+			return false
+		end
+		local hex = string.format("#%02x%02x%02x", red * alpha, green * alpha, blue * alpha)
+		return hipatterns.compute_hex_color_group(hex, style)
+	end
+
 	hipatterns.setup({
 		highlighters = {
 			fixme = hi_words({ "FIXME", "Fixme", "fixme" }, "MiniHipatternsFixme"),
@@ -425,6 +411,11 @@ later(function()
 			note = hi_words({ "NOTE", "Note", "note" }, "MiniHipatternsNote"),
 
 			hex_color = hipatterns.gen_highlighter.hex_color(),
+			rgba_color = {
+				pattern = "rgba%(%d+, ?%d+, ?%d+, ?%d*%.?%d*%)",
+				group = rgba_color,
+				-- extmark_opts = extmark_opts_inline,
+			},
 		},
 	})
 end)
@@ -594,6 +585,16 @@ later(function()
 				settings = {
 					Lua = {
 						diagnostics = { globals = { "vim" } },
+					},
+					tailwindCSS = {
+						experimental = {
+							classRegex = {
+								{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+								{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+								{ "cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+								{ "([a-zA-Z0-9\\-:]+)" },
+							},
+						},
 					},
 				},
 			})
