@@ -272,14 +272,6 @@ later(function()
 end)
 
 later(function()
-	require("mini.jump").setup()
-end)
-
-later(function()
-	require("mini.jump2d").setup({ view = { dim = true } })
-end)
-
-later(function()
 	require("mini.splitjoin").setup()
 end)
 
@@ -643,4 +635,18 @@ later(function()
 		},
 		depends = { "nvim-lua/plenary.nvim" },
 	})
+end)
+
+-- Flash
+later(function()
+	add("folke/flash.nvim")
+	-- require("flash").setup()
+
+	vim.keymap.set({ "n", "x", "o" }, "s", function()
+		require("flash").jump()
+	end, { desc = "Flash Jump" })
+
+	vim.keymap.set({ "n", "x", "o" }, "S", function()
+		require("flash").treesitter()
+	end, { desc = "Flash Treesitter" })
 end)

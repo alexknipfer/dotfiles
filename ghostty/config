@@ -2,3 +2,4 @@ window-padding-color = background
 theme = rose-pine
 font-family = "JetBrains Mono"
 font-size = 14
+macos-icon = holographic
