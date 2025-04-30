@@ -67,6 +67,15 @@ vim.api.nvim_create_user_command("ReplaceAfterCursor", function()
 	vim.fn.cursor(line, col)
 end, {})
 
+local function confirm_and_delete_buffer()
+	local confirm = vim.fn.confirm("Delete buffer and file?", "&Yes\n&No", 2)
+
+	if confirm == 1 then
+		os.remove(vim.fn.expand("%"))
+		vim.api.nvim_buf_delete(0, { force = true })
+	end
+end
+
 -- Mini.nvim ==================================================================
 add({ name = "mini.nvim", checkout = "HEAD" })
 
@@ -133,6 +142,7 @@ now(function()
 	nmap_leader("[", "<C-w>w", "Switch to previous Window")
 	nmap_leader("]", "<C-w>w", "Switch to next Window")
 	nmap_leader("k", "<cmd>bdelete<CR>", "Close buffer")
+	nmap_leader("df", confirm_and_delete_buffer, "Delete current buffer")
 	nmap_leader("h", "<cmd>bprev<cr>", "Previous Buffer")
 	nmap_leader(";", "<cmd>bnext<cr>", "Next Buffer")
 	nmap_leader("w", "<cmd>w<CR>", "Save")
