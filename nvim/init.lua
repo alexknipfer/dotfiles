@@ -593,27 +593,35 @@ later(function()
 		automatic_installation = true,
 	})
 
-	require("mason-lspconfig").setup_handlers({
-		function(server)
-			lspconfig[server].setup({
-				on_attach = on_attach_custom,
-				settings = {
-					Lua = {
-						diagnostics = { globals = { "vim" } },
-					},
-					tailwindCSS = {
-						experimental = {
-							classRegex = {
-								{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-								{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-								{ "cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-								{ "([a-zA-Z0-9\\-:]+)" },
-							},
-						},
+	-- Use vim.lsp.config for per-server configuration (Neovim 0.11+)
+	vim.lsp.config("vtsls", {
+		on_attach = on_attach_custom,
+		-- add any vtsls-specific settings here
+	})
+
+	vim.lsp.config("tailwindcss", {
+		on_attach = on_attach_custom,
+		settings = {
+			tailwindCSS = {
+				experimental = {
+					classRegex = {
+						{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+						{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+						{ "cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+						{ "([a-zA-Z0-9\\-:]+)" },
 					},
 				},
-			})
-		end,
+			},
+		},
+	})
+
+	vim.lsp.config("lua_ls", {
+		on_attach = on_attach_custom,
+		settings = {
+			Lua = {
+				diagnostics = { globals = { "vim" } },
+			},
+		},
 	})
 end)
 
