@@ -3,16 +3,17 @@
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
       "space f f": "file_finder::Toggle",
+      "space f g": "pane::DeploySearch",
       "space g": "git::Diff",
-      "space o": "workspace::ToggleVimMode"
+      "space o": "workspace::ToggleLeftDock",
+      "space l r": "editor::Rename"
     }
   },
   {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
       "shift-k": ["workspace::SendKeystrokes", "g h"],
-      "space c a": "editor::ToggleCodeActions",
-      "space g": "git_panel::ToggleFocus"
+      "space c a": "editor::ToggleCodeActions"
     }
   },
   {
