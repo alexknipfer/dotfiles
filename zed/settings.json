@@ -7,10 +7,24 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "language_models": {
+    "copilot_chat": {
+      "api_url": "https://api.githubcopilot.com/chat/completions",
+      "auth_url": "https://api.github.com/copilot_internal/v2/token",
+      "models_url": "https://api.githubcopilot.com/models"
+    }
+  },
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
+  "theme": "Rosé Pine",
   "ui_font_size": 16,
   "buffer_font_size": 14,
   "relative_line_numbers": true,
   "vim_mode": true,
+  "gutter": {
+    "line_numbers": true
+  },
   "formatter": {
     "external": {
       "command": "node_modules/.bin/prettier",
