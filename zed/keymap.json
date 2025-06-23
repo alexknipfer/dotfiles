@@ -2,14 +2,17 @@
   {
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
-      // put key-bindings here if you want them to work in normal & visual mode
+      "space f f": "file_finder::Toggle",
+      "space g": "git::Diff",
+      "space o": "workspace::ToggleVimMode"
     }
   },
   {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
       "shift-k": ["workspace::SendKeystrokes", "g h"],
-      "space s f": ["workspace::SendKeystrokes", "cmd-p"]
+      "space c a": "editor::ToggleCodeActions",
+      "space g": "git_panel::ToggleFocus"
     }
   },
   {
@@ -19,9 +22,21 @@
     }
   },
   {
-    "context": "Editor && vim_mode == insert && !menu",
+    "context": "vim_mode == insert",
     "bindings": {
       "j k": "vim::NormalBefore"
     }
+  },
+  {
+    "context": "Editor && vim_mode == insert && edit_prediction",
+    "bindings": {
+      "ctrl-j": "editor::AcceptEditPrediction"
+    }
   }
+  // {
+  //   "context": "GitPanel",
+  //   "bindings": {
+  //     "q": "git_panel::Close"
+  //   }
+  // }
 ]
