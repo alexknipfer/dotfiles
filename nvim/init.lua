@@ -119,6 +119,7 @@ now(function()
 	vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
 	vim.o.softtabstop = 2 -- Number of spaces inserted instead of a TAB character
 	vim.o.shiftwidth = 2 -- Number of spaces inserted when indenting
+	vim.g.copilot_no_tab_map = true
 end)
 
 -- Keymaps
@@ -357,6 +358,19 @@ later(function()
 		},
 	})
 
+	_G.cr_action = function()
+		-- If there is selected item in popup, accept it with <C-y>
+		if vim.fn.complete_info()["selected"] ~= -1 then
+			return "\25"
+		end
+		-- Fall back to plain `<CR>`. You might want to customize according
+		-- to other plugins. For example if 'mini.pairs' is set up, replace
+		-- next line with `return MiniPairs.cr()`
+		return "\r"
+	end
+
+	vim.keymap.set("i", "<CR>", "v:lua.cr_action()", { expr = true })
+
 	-- vim.o.completeopt = "menuone,noinsert"
 end)
 
@@ -551,7 +565,6 @@ now(function()
 		expr = true,
 		replace_keycodes = false,
 	})
-	vim.g.copilot_no_tab_map = true
 end)
 
 -- LSP
@@ -580,27 +593,35 @@ later(function()
 		automatic_installation = true,
 	})
 
-	require("mason-lspconfig").setup_handlers({
-		function(server)
-			lspconfig[server].setup({
-				on_attach = on_attach_custom,
-				settings = {
-					Lua = {
-						diagnostics = { globals = { "vim" } },
-					},
-					tailwindCSS = {
-						experimental = {
-							classRegex = {
-								{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-								{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-								{ "cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-								{ "([a-zA-Z0-9\\-:]+)" },
-							},
-						},
+	-- Use vim.lsp.config for per-server configuration (Neovim 0.11+)
+	vim.lsp.config("vtsls", {
+		on_attach = on_attach_custom,
+		-- add any vtsls-specific settings here
+	})
+
+	vim.lsp.config("tailwindcss", {
+		on_attach = on_attach_custom,
+		settings = {
+			tailwindCSS = {
+				experimental = {
+					classRegex = {
+						{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+						{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+						{ "cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+						{ "([a-zA-Z0-9\\-:]+)" },
 					},
 				},
-			})
-		end,
+			},
+		},
+	})
+
+	vim.lsp.config("lua_ls", {
+		on_attach = on_attach_custom,
+		settings = {
+			Lua = {
+				diagnostics = { globals = { "vim" } },
+			},
+		},
 	})
 end)
 
