@@ -1,13 +1,23 @@
 [
   {
-    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "context": "VimControl && !menu",
     "bindings": {
-      "space f f": "file_finder::Toggle",
-      "space f g": "pane::DeploySearch",
       "space g": "git::Diff",
       "space o": "workspace::ToggleLeftDock",
-      "space l r": "editor::Rename"
+      "space l r": "editor::Rename",
+      "space f f": "file_finder::Toggle",
+      "space f r": "editor::FindAllReferences",
+      "space f g": "pane::DeploySearch",
+      "space ]": ["workspace::SendKeystrokes", "cmd-k cmd-right"],
+      "space [": ["workspace::SendKeystrokes", "cmd-k cmd-left"]
     }
+  },
+  {
+     "context": "EmptyPane || SharedScreen",
+     "bindings": {
+       "space f f": "file_finder::Toggle",
+       "space f g": "pane::DeploySearch"
+     }
   },
   {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
@@ -29,15 +39,33 @@
     }
   },
   {
-    "context": "Editor && vim_mode == insert && edit_prediction",
+    "context": "Editor && edit_prediction",
     "bindings": {
       "ctrl-j": "editor::AcceptEditPrediction"
     }
-  }
-  // {
-  //   "context": "GitPanel",
-  //   "bindings": {
-  //     "q": "git_panel::Close"
-  //   }
-  // }
+  },
+  {
+     "context": "Editor",
+     "bindings": {
+       "tab": "editor::Tab"
+     }
+   },
+   {
+     "context": "Editor && showing_completions",
+     "bindings": {
+       "tab": "editor::ComposeCompletion"
+     }
+   },
+   {
+     "context": "(VimControl && !menu) || vim_mode == replace || vim_mode == waiting",
+     "bindings": {
+       "tab": "vim::Tab"
+     }
+   },
+   {
+     "context": "vim_mode == literal",
+     "bindings": {
+       "tab": ["vim::Literal", ["tab", "\u0009"]]
+     }
+   }
 ]

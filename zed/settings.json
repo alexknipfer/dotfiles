@@ -7,6 +7,14 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "agent": {
+    "model_parameters": [],
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4.1"
+    },
+    "version": "2"
+  },
   "language_models": {
     "copilot_chat": {
       "api_url": "https://api.githubcopilot.com/chat/completions",
@@ -19,11 +27,17 @@
   },
   "theme": "Rosé Pine",
   "ui_font_size": 16,
-  "buffer_font_size": 14,
+  "buffer_font_size": 13,
   "relative_line_numbers": true,
   "vim_mode": true,
   "gutter": {
     "line_numbers": true
+  },
+  "tab_bar": {
+    "show": false
+  },
+  "terminal": {
+    "dock": "right"
   },
   "formatter": {
     "external": {
