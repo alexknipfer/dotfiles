@@ -45,9 +45,22 @@
     }
   },
   {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-b h": "workspace::ActivatePaneLeft",
+      "ctrl-b l": "workspace::ActivatePaneRight",
+      "ctrl-b k": "workspace::ActivatePaneUp",
+      "ctrl-b j": "workspace::ActivatePaneDown"
+    }
+  },
+  {
      "context": "Editor",
      "bindings": {
-       "tab": "editor::Tab"
+       "tab": "editor::Tab",
+       "ctrl-b h": "workspace::ActivatePaneLeft",
+       "ctrl-b j": "workspace::ActivatePaneDown",
+       "ctrl-b k": "workspace::ActivatePaneUp",
+       "ctrl-b l": "workspace::ActivatePaneRight"
      }
    },
    {
