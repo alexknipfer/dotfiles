@@ -281,6 +281,11 @@ $("h1").each(function() {
 				<key>date</key>
 				<date>2025-02-18T04:21:46Z</date>
 			</dict>
+			<key>http://kapeli.com/feeds/Elixir.xml</key>
+			<dict>
+				<key>date</key>
+				<date>2025-07-07T19:45:21Z</date>
+			</dict>
 			<key>http://kapeli.com/feeds/HTML.xml</key>
 			<dict>
 				<key>date</key>
