@@ -16,7 +16,6 @@
       "provider": "anthropic",
       "model": "claude-sonnet-4-0"
     },
-    "version": "2"
   },
   "context_servers": {
     "Figma Dev Mode MCP": {
