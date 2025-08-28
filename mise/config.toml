@@ -2,7 +2,9 @@
 lts = '22'
 
 [tools]
+erlang = "latest"
 node = "lts"
+elixir = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
