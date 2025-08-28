@@ -8,6 +8,9 @@
 // from the command palette or from `Zed` application menu.
 {
   "icon_theme": "Colored Zed Icons Theme Dark",
+  "experimental.theme_overrides": {
+    // "element.hover": "#363c46"
+  },
   "agent": {
     "always_allow_tool_actions": true,
     "default_profile": "write",
@@ -54,7 +57,7 @@
     "edit_prediction_provider": "copilot"
   },
   "show_edit_predictions": true,
-  "theme": "Rosé Pine",
+  "theme": "Gruvbox Material",
   "ui_font_size": 16,
   "buffer_font_size": 13,
   "relative_line_numbers": true,
