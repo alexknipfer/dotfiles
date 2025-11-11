@@ -281,11 +281,6 @@ $("h1").each(function() {
 				<key>date</key>
 				<date>2025-02-18T04:21:46Z</date>
 			</dict>
-			<key>http://kapeli.com/feeds/Elixir.xml</key>
-			<dict>
-				<key>date</key>
-				<date>2025-07-07T19:45:21Z</date>
-			</dict>
 			<key>http://kapeli.com/feeds/HTML.xml</key>
 			<dict>
 				<key>date</key>
@@ -323,7 +318,13 @@ $("h1").each(function() {
 			</dict>
 		</dict>
 		<key>uninstalled</key>
-		<dict/>
+		<dict>
+			<key>http://kapeli.com/feeds/Elixir.xml</key>
+			<dict>
+				<key>date</key>
+				<date>2025-10-29T18:31:21Z</date>
+			</dict>
+		</dict>
 	</dict>
 	<key>isPinned</key>
 	<true/>
@@ -484,7 +485,16 @@ $("h1").each(function() {
 	<key>versionedFeeds</key>
 	<dict>
 		<key>installed</key>
-		<dict/>
+		<dict>
+			<key>http://kapeli.com/feeds/Angular.xml</key>
+			<dict>
+				<key>20.3</key>
+				<dict>
+					<key>date</key>
+					<date>2025-10-29T18:31:53Z</date>
+				</dict>
+			</dict>
+		</dict>
 		<key>uninstalled</key>
 		<dict/>
 	</dict>

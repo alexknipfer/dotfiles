@@ -6,13 +6,18 @@
         "task::Spawn",
         { "task_name": "start lazygit", "reveal_target": "center" }
       ],
+      // "space f f": [
+      //   "task::Spawn",
+      //   { "task_name": "file_finder", "reveal_target": "center" }
+      // ],
       "space o": "workspace::ToggleLeftDock",
       "space l r": "editor::Rename",
       "space f f": "file_finder::Toggle",
       "space f r": "editor::FindAllReferences",
       "space f g": "pane::DeploySearch",
       "space ]": ["workspace::SendKeystrokes", "cmd-k cmd-right"],
-      "space [": ["workspace::SendKeystrokes", "cmd-k cmd-left"]
+      "space [": ["workspace::SendKeystrokes", "cmd-k cmd-left"],
+      "space b": "git::Blame"
     }
   },
   {
@@ -41,12 +46,12 @@
       "j k": "vim::NormalBefore"
     }
   },
-  {
-    "context": "Editor && edit_prediction",
-    "bindings": {
-      "ctrl-j": "editor::AcceptEditPrediction"
-    }
-  },
+  // {
+  //   "context": "Editor && edit_prediction",
+  //   "bindings": {
+  //     "ctrl-j": "editor::AcceptEditPrediction"
+  //   }
+  // },
   {
     "context": "Dock",
     "bindings": {
@@ -59,29 +64,29 @@
   {
     "context": "Editor",
     "bindings": {
-      "tab": "editor::Tab",
+      // "tab": "editor::Tab",
       "ctrl-b h": "workspace::ActivatePaneLeft",
       "ctrl-b j": "workspace::ActivatePaneDown",
       "ctrl-b k": "workspace::ActivatePaneUp",
       "ctrl-b l": "workspace::ActivatePaneRight"
     }
   },
-  {
-    "context": "Editor && showing_completions",
-    "bindings": {
-      "tab": "editor::ComposeCompletion"
-    }
-  },
-  {
-    "context": "(VimControl && !menu) || vim_mode == replace || vim_mode == waiting",
-    "bindings": {
-      "tab": "vim::Tab"
-    }
-  },
-  {
-    "context": "vim_mode == literal",
-    "bindings": {
-      "tab": ["vim::Literal", ["tab", "\u0009"]]
-    }
-  }
+  // {
+  //   "context": "Editor && showing_completions",
+  //   "bindings": {
+  //     "tab": "editor::ComposeCompletion"
+  //   }
+  // },
+  // {
+  //   "context": "(VimControl && !menu) || vim_mode == replace || vim_mode == waiting",
+  //   "bindings": {
+  //     "tab": "vim::Tab"
+  //   }
+  // },
+  // {
+  //   "context": "vim_mode == literal",
+  //   "bindings": {
+  //     "tab": ["vim::Literal", ["tab", "\u0009"]]
+  //   }
+  // }
 ]
