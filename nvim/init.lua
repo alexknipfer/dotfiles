@@ -1,3 +1,76 @@
+-- VSCode-specific Neovim configuration
+-- This config only loads flash.nvim when running in VSCode
+
+if vim.g.vscode then
+	-- VSCode extension mode - only load flash.nvim
+	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+	if not vim.loop.fs_stat(lazypath) then
+		vim.fn.system({
+			"git",
+			"clone",
+			"--filter=blob:none",
+			"https://github.com/folke/lazy.nvim.git",
+			"--branch=stable",
+			lazypath,
+		})
+	end
+	vim.opt.rtp:prepend(lazypath)
+
+	-- Workaround for vscode-neovim UI desync (issue #2117)
+
+	-- 1. Redraw on CursorHold (idle for some time)
+	local redraw_fix = vim.api.nvim_create_augroup("VSCodeRedrawFix", { clear = true })
+	vim.api.nvim_create_autocmd("CursorHold", {
+		group = redraw_fix,
+		callback = function()
+			vim.cmd("silent! mode") -- triggers a lightweight redraw
+		end,
+	})
+
+	-- 2. Redraw immediately after text changes (e.g., visual delete)
+	local redraw_group = vim.api.nvim_create_augroup("RedrawOnDelete", { clear = true })
+	vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
+		group = redraw_group,
+		callback = function()
+			if vim.fn.mode() == "n" then
+				vim.cmd("silent! mode") -- refresh UI after delete/insert
+			end
+		end,
+	})
+
+	require("lazy").setup({
+		{
+			"folke/flash.nvim",
+			event = "VeryLazy",
+			opts = {},
+			keys = {
+				{
+					"s",
+					mode = { "n", "x", "o" },
+					function()
+						require("flash").jump()
+					end,
+					desc = "Flash",
+				},
+			},
+		},
+	})
+
+	-- Basic VSCode-friendly settings
+	vim.g.mapleader = " "
+	vim.g.maplocalleader = " "
+	vim.opt.ignorecase = true
+	vim.opt.timeoutlen = 300
+	vim.opt.clipboard = "unnamedplus"
+	vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
+	-- Exit insert mode with jk
+	-- vim.keymap.set("i", "jk", "<Esc>")
+
+	return
+end
+
+-- Regular Neovim configuration (when not in VSCode)
 -- Application Config
 local H = {}
 
