@@ -1,0 +1,31 @@
+[
+  {
+    "key": "cmd+i",
+    "command": "composerMode.agent"
+  },
+  {
+    "key": "space f f",
+    "command": "workbench.action.quickOpen",
+    "when": "editorTextFocus && neovim.mode == 'normal'"
+  },
+  {
+    "key": "space f g",
+    "command": "workbench.action.findInFiles",
+    "when": "editorTextFocus && neovim.mode == 'normal'"
+  },
+  {
+    "key": "space l r",
+    "command": "editor.action.rename",
+    "when": "editorTextFocus && neovim.mode == 'normal'"
+  },
+  {
+    "key": "space b",
+    "command": "workbench.view.scm",
+    "when": "editorTextFocus && neovim.mode == 'normal'"
+  },
+  {
+    "key": "space o",
+    "command": "workbench.view.explorer",
+    "when": "editorTextFocus && neovim.mode == 'normal'"
+  }
+]

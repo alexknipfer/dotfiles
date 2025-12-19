@@ -1,0 +1,32 @@
+{
+  "workbench.editor.enablePreview": false,
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontLigatures": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.tsserver.log": "off",
+  "breadcrumbs.enabled": true,
+  "editor.tabSize": 2,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "redhat.telemetry.enabled": false,
+  "editor.inlineSuggest.enabled": true,
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "editor.formatOnSave": true,
+  "git.confirmSync": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "editor.lineNumbers": "relative",
+  "cursor.cpp.disabledLanguages": ["plaintext", "markdown", "scminput"],
+  "workbench.colorTheme": "Gruvbox Dark Hard",
+  "editor.fontSize": 13,
+  "vscode-neovim.compositeKeys": {
+    "jk": {
+      "command": "vscode-neovim.escape"
+    }
+  }
+}
