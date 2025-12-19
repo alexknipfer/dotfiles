@@ -46,12 +46,12 @@
       "j k": "vim::NormalBefore"
     }
   },
-  // {
-  //   "context": "Editor && edit_prediction",
-  //   "bindings": {
-  //     "ctrl-j": "editor::AcceptEditPrediction"
-  //   }
-  // },
+  {
+    "context": "Editor && edit_prediction",
+    "bindings": {
+      "ctrl-j": "editor::AcceptEditPrediction"
+    }
+  },
   {
     "context": "Dock",
     "bindings": {
@@ -64,29 +64,29 @@
   {
     "context": "Editor",
     "bindings": {
-      // "tab": "editor::Tab",
+      "tab": "editor::Tab",
       "ctrl-b h": "workspace::ActivatePaneLeft",
       "ctrl-b j": "workspace::ActivatePaneDown",
       "ctrl-b k": "workspace::ActivatePaneUp",
       "ctrl-b l": "workspace::ActivatePaneRight"
     }
   },
-  // {
-  //   "context": "Editor && showing_completions",
-  //   "bindings": {
-  //     "tab": "editor::ComposeCompletion"
-  //   }
-  // },
-  // {
-  //   "context": "(VimControl && !menu) || vim_mode == replace || vim_mode == waiting",
-  //   "bindings": {
-  //     "tab": "vim::Tab"
-  //   }
-  // },
-  // {
-  //   "context": "vim_mode == literal",
-  //   "bindings": {
-  //     "tab": ["vim::Literal", ["tab", "\u0009"]]
-  //   }
-  // }
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "tab": "editor::ComposeCompletion"
+    }
+  },
+  {
+    "context": "(VimControl && !menu) || vim_mode == replace || vim_mode == waiting",
+    "bindings": {
+      "tab": "vim::Tab"
+    }
+  },
+  {
+    "context": "vim_mode == literal",
+    "bindings": {
+      "tab": ["vim::Literal", ["tab", "\u0009"]]
+    }
+  }
 ]
