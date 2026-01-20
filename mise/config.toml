@@ -1,5 +1,5 @@
-[alias.node.versions]
-lts = '22'
+[tool_alias.node.versions]
+lts = '24'
 
 [tools]
 erlang = "latest"
