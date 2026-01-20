@@ -17,16 +17,19 @@
   "editor.formatOnSave": true,
   "git.confirmSync": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "extensions.experimental.affinity": {
-    "asvetliakov.vscode-neovim": 1
-  },
   "editor.lineNumbers": "relative",
   "cursor.cpp.disabledLanguages": ["plaintext", "markdown", "scminput"],
-  "workbench.colorTheme": "Gruvbox Dark Hard",
+  "workbench.colorTheme": "Shades of Purple (Super Dark)",
   "editor.fontSize": 13,
   "vscode-neovim.compositeKeys": {
     "jk": {
       "command": "vscode-neovim.escape"
     }
-  }
+  },
+  "window.commandCenter": true,
+  "editor.scrollbar.verticalScrollbarSize": 4,
+  "editor.scrollbar.horizontalScrollbarSize": 4,
+  "terminal.integrated.tabs.enabled": false,
+  "update.releaseTrack": "dev",
+  "update.mode": "silentlyApplyOnQuit"
 }
