@@ -39,3 +39,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(/opt/homebrew/bin/mise activate zsh)"
 
 bindkey -s '^f' 'tmux-sessionizer\n'
+
+# opencode
+export PATH=/Users/alexanderknipfer/.opencode/bin:$PATH
