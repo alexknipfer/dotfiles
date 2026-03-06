@@ -293,10 +293,10 @@ end)
 
 -- Colorscheme
 now(function()
-	add("rose-pine/neovim")
-	vim.cmd("colorscheme rose-pine")
-	vim.api.nvim_set_hl(0, "DiffText", { fg = "#ffffff", bg = "#1d3b40" })
-	vim.api.nvim_set_hl(0, "DiffAdd", { fg = "#ffffff", bg = "#1d3450" })
+	add("rebelot/kanagawa.nvim")
+	vim.cmd("colorscheme kanagawa-dragon")
+	-- vim.api.nvim_set_hl(0, "DiffText", { fg = "#ffffff", bg = "#1d3b40" })
+	-- vim.api.nvim_set_hl(0, "DiffAdd", { fg = "#ffffff", bg = "#1d3450" })
 end)
 
 -- Mini Deps ===============================================================
