@@ -165,7 +165,7 @@ now(function()
 	vim.g.maplocalleader = " "
 	vim.opt.number = true
 	vim.opt.relativenumber = true
-	vim.opt.statuscolumn = "%s %{v:relnum} %{v:lnum}"
+	-- vim.opt.statuscolumn = "%s %{v:relnum} %{v:lnum}"
 	vim.opt.mouse = "a"
 	vim.opt.showmode = false
 	vim.opt.clipboard = "unnamedplus"
