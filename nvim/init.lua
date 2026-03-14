@@ -632,21 +632,19 @@ later(function()
 end)
 
 -- GitHub Copilot
-now(function()
-	add("github/copilot.vim")
-	vim.keymap.set("i", "<C-J>", 'copilot#Accept("\\<CR>")', {
-		expr = true,
-		replace_keycodes = false,
-	})
-end)
+-- now(function()
+-- 	add("github/copilot.vim")
+-- 	vim.keymap.set("i", "<C-J>", 'copilot#Accept("\\<CR>")', {
+-- 		expr = true,
+-- 		replace_keycodes = false,
+-- 	})
+-- end)
 
 -- LSP
 later(function()
 	add("neovim/nvim-lspconfig")
 	add("williamboman/mason.nvim")
 	add("williamboman/mason-lspconfig.nvim")
-
-	local lspconfig = require("lspconfig")
 
 	local on_attach_custom = function(client, buf_id)
 		vim.bo[buf_id].omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
@@ -662,38 +660,52 @@ later(function()
 
 	require("mason").setup({})
 	require("mason-lspconfig").setup({
-		ensure_installed = { "vtsls", "tailwindcss" },
-		automatic_installation = true,
-	})
+		ensure_installed = { "vtsls", "tailwindcss", "lua_ls" },
+		handlers = {
+			-- Default handler for other servers
+			function(server_name)
+				require("lspconfig")[server_name].setup({
+					on_attach = on_attach_custom,
+				})
+			end,
 
-	-- Use vim.lsp.config for per-server configuration (Neovim 0.11+)
-	vim.lsp.config("vtsls", {
-		on_attach = on_attach_custom,
-		-- add any vtsls-specific settings here
-	})
+			-- Custom vtsls (TypeScript)
+			vtsls = function()
+				require("lspconfig").vtsls.setup({
+					on_attach = on_attach_custom,
+				})
+			end,
 
-	vim.lsp.config("tailwindcss", {
-		on_attach = on_attach_custom,
-		settings = {
-			tailwindCSS = {
-				experimental = {
-					classRegex = {
-						{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-						{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-						{ "cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-						{ "([a-zA-Z0-9\\-:]+)" },
+			-- Custom Tailwind with classRegex
+			tailwindcss = function()
+				require("lspconfig").tailwindcss.setup({
+					on_attach = on_attach_custom,
+					settings = {
+						tailwindCSS = {
+							experimental = {
+								classRegex = {
+									{ "cva\\(([^)]*)\\)", "[\"'`\\]([^\"'`]*).*?[\"'`\\]" },
+									{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+									{ "cn\\(([^)]*)\\)", "[\"'`\\]([^\"'`]*).*?[\"'`\\]" },
+									{ "([a-zA-Z0-9\\-:_]+)" },
+								},
+							},
+						},
 					},
-				},
-			},
-		},
-	})
+				})
+			end,
 
-	vim.lsp.config("lua_ls", {
-		on_attach = on_attach_custom,
-		settings = {
-			Lua = {
-				diagnostics = { globals = { "vim" } },
-			},
+			-- Custom lua_ls
+			lua_ls = function()
+				require("lspconfig").lua_ls.setup({
+					on_attach = on_attach_custom,
+					settings = {
+						Lua = {
+							diagnostics = { globals = { "vim" } },
+						},
+					},
+				})
+			end,
 		},
 	})
 end)
