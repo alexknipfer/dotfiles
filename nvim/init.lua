@@ -278,6 +278,9 @@ now(function()
 	nmap_leader("fv", '<Cmd>Pick visit_paths cwd=""<CR>', "Visit paths (all)")
 	nmap_leader("fV", "<Cmd>Pick visit_paths<CR>", "Visit paths (cwd)")
 
+	-- Package Info Keymaps
+	nmap_leader("nu", '<Cmd>lua require("package-info").update()<CR>', "Update current dependency")
+
 	-- MiniFiles Keymaps
 	nmap_leader("ec", '<Cmd>lua MiniFiles.open(vim.fn.stdpath("config"))<CR>', "Config")
 	nmap_leader("ed", "<Cmd>lua MiniFiles.open()<CR>", "Directory")
@@ -549,9 +552,13 @@ end)
 later(function()
 	add({ source = "vuki656/package-info.nvim", depends = { "MunifTanjim/nui.nvim" }, ft = "json" })
 	require("package-info").setup({
-		colors = {
-			up_to_date = "#0DB9D7",
-			outdated = "#d19a66",
+		highlights = {
+			up_to_date = {
+				fg = "#0DB9D7",
+			},
+			outdated = {
+				fg = "#d19a66",
+			},
 		},
 	})
 
