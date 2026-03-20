@@ -653,66 +653,31 @@ later(function()
 	add("williamboman/mason.nvim")
 	add("williamboman/mason-lspconfig.nvim")
 
-	local on_attach_custom = function(client, buf_id)
-		vim.bo[buf_id].omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
-
-		if vim.fn.has("nvim-0.8") == 1 then
-			client.server_capabilities.documentFormattingProvider = false
-			client.server_capabilities.documentRangeFormattingProvider = false
-		else
-			client.resolved_capabilities.document_formatting = false
-			client.resolved_capabilities.document_range_formatting = false
-		end
-	end
-
 	require("mason").setup({})
 	require("mason-lspconfig").setup({
 		ensure_installed = { "vtsls", "tailwindcss", "lua_ls" },
-		handlers = {
-			-- Default handler for other servers
-			function(server_name)
-				require("lspconfig")[server_name].setup({
-					on_attach = on_attach_custom,
-				})
-			end,
+	})
 
-			-- Custom vtsls (TypeScript)
-			vtsls = function()
-				require("lspconfig").vtsls.setup({
-					on_attach = on_attach_custom,
-				})
-			end,
-
-			-- Custom Tailwind with classRegex
-			tailwindcss = function()
-				require("lspconfig").tailwindcss.setup({
-					on_attach = on_attach_custom,
-					settings = {
-						tailwindCSS = {
-							experimental = {
-								classRegex = {
-									{ "cva\\(([^)]*)\\)", "[\"'`\\]([^\"'`]*).*?[\"'`\\]" },
-									{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-									{ "cn\\(([^)]*)\\)", "[\"'`\\]([^\"'`]*).*?[\"'`\\]" },
-									{ "([a-zA-Z0-9\\-:_]+)" },
-								},
-							},
-						},
+	vim.lsp.config("tailwindcss", {
+		settings = {
+			tailwindCSS = {
+				experimental = {
+					classRegex = {
+						{ "cva\\(([^)]*)\\)", "[\"'`\\]([^\"'`]*).*?[\"'`\\]" },
+						{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+						{ "cn\\(([^)]*)\\)", "[\"'`\\]([^\"'`]*).*?[\"'`\\]" },
+						{ "([a-zA-Z0-9\\-:_]+)" },
 					},
-				})
-			end,
+				},
+			},
+		},
+	})
 
-			-- Custom lua_ls
-			lua_ls = function()
-				require("lspconfig").lua_ls.setup({
-					on_attach = on_attach_custom,
-					settings = {
-						Lua = {
-							diagnostics = { globals = { "vim" } },
-						},
-					},
-				})
-			end,
+	vim.lsp.config("lua_ls", {
+		settings = {
+			Lua = {
+				diagnostics = { globals = { "vim" } },
+			},
 		},
 	})
 end)
