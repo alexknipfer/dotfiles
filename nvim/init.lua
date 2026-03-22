@@ -729,7 +729,6 @@ end)
 -- Flash
 later(function()
 	add("folke/flash.nvim")
-	-- require("flash").setup()
 
 	vim.keymap.set({ "n", "x", "o" }, "s", function()
 		require("flash").jump()
