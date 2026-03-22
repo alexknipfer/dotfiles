@@ -28,9 +28,9 @@ ZSH_DISABLE_COMPFIX=true
 # Initialize oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-precmd() {
-  source $DOTFILES/zsh/aliases.zsh
-}
+# precmd() {
+#   source $DOTFILES/zsh/aliases.zsh
+# }
 
 # Initialize Homebrew for use in the shell
 eval "$(/opt/homebrew/bin/brew shellenv)"
