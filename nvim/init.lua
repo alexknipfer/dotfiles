@@ -243,6 +243,18 @@ now(function()
 	-- LSP Keymaps
 	nmap_leader("la", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Arguments popup")
 	nmap_leader("ld", "<Cmd>lua vim.diagnostic.open_float()<CR>", "Diagnostics popup")
+
+	-- Shift+K: Show diagnostics if present, otherwise show hover
+	vim.keymap.set("n", "K", function()
+		local line = vim.fn.line(".") - 1
+		local bufnr = vim.api.nvim_get_current_buf()
+		local diagnostics = vim.diagnostic.get(bufnr, { lnum = line })
+		if #diagnostics > 0 then
+			vim.diagnostic.open_float({ scope = "line" })
+		else
+			vim.lsp.buf.hover()
+		end
+	end, { desc = "Show diagnostic or hover info" })
 	nmap_leader("lf", formatting_cmd, "Format")
 	nmap_leader("li", "<Cmd>lua vim.lsp.buf.hover()<CR>", "Information")
 	nmap_leader("lj", "<Cmd>lua vim.diagnostic.goto_next()<CR>", "Next diagnostic")
@@ -560,6 +572,7 @@ later(function()
 				fg = "#d19a66",
 			},
 		},
+		package_manager = "pnpm",
 	})
 
 	vim.cmd([[highlight PackageInfoUpToDateVersion guifg=]] .. "#0DB9D7")
@@ -639,13 +652,13 @@ later(function()
 end)
 
 -- GitHub Copilot
--- now(function()
--- 	add("github/copilot.vim")
--- 	vim.keymap.set("i", "<C-J>", 'copilot#Accept("\\<CR>")', {
--- 		expr = true,
--- 		replace_keycodes = false,
--- 	})
--- end)
+now(function()
+	add("github/copilot.vim")
+	vim.keymap.set("i", "<C-J>", 'copilot#Accept("\\<CR>")', {
+		expr = true,
+		replace_keycodes = false,
+	})
+end)
 
 -- LSP
 later(function()
