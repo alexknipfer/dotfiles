@@ -292,6 +292,7 @@ now(function()
 
 	-- Package Info Keymaps
 	nmap_leader("nu", '<Cmd>lua require("package-info").update()<CR>', "Update current dependency")
+	nmap_leader("nd", '<Cmd>lua require("package-info").delete()<CR>', "Delete current dependency")
 
 	-- MiniFiles Keymaps
 	nmap_leader("ec", '<Cmd>lua MiniFiles.open(vim.fn.stdpath("config"))<CR>', "Config")
