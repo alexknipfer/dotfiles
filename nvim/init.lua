@@ -520,7 +520,7 @@ later(function()
 		"https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
 	})
 
-	require("nvim-treesitter.configs").setup({
+	require("nvim-treesitter").setup({
 		ensure_installed = {
 			"bash",
 			"c",
