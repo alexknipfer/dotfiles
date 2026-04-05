@@ -1,0 +1,5 @@
+# Opencode auto-generates these files when it runs
+node_modules
+package.json
+package-lock.json
+bun.lock
