@@ -158,7 +158,7 @@ require("nvim-tree").setup({
 	},
 })
 
--- Copilot keymap (loaded immediately)
+-- Copilot keymap
 vim.keymap.set("i", "<C-J>", 'copilot#Accept("\\<CR>")', {
 	expr = true,
 	replace_keycodes = false,
@@ -179,9 +179,6 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Tab completion
 vim.keymap.set("i", "<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], { expr = true })
 vim.keymap.set("i", "<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], { expr = true })
-
--- Custom commands
-nmap_leader("R", "<Cmd>ReplaceAfterCursor<CR>", "Find and replace after cursor")
 
 -- Buffer keymaps
 nmap_leader("[", "<C-w>w", "Switch to previous Window")
@@ -325,12 +322,10 @@ end, { desc = "Clean inactive packages" })
 -- =============================================================================
 
 later(function()
-	-- Mini Bracketed
 	require("mini.bracketed").setup()
 end)
 
 later(function()
-	-- Mini Bufremove
 	require("mini.bufremove").setup()
 end)
 
@@ -349,67 +344,54 @@ later(function()
 end)
 
 later(function()
-	-- Mini Cursorword
 	require("mini.cursorword").setup()
 end)
 
 later(function()
-	-- Mini Doc
 	require("mini.doc").setup()
 end)
 
 later(function()
-	-- Mini Git
 	require("mini.git").setup()
 end)
 
 later(function()
-	-- Mini Extra
 	require("mini.extra").setup()
 end)
 
 later(function()
-	-- Mini Align
 	require("mini.align").setup()
 end)
 
 later(function()
-	-- Mini Indentscope
 	require("mini.indentscope").setup()
 end)
 
 later(function()
-	-- Mini Splitjoin
 	require("mini.splitjoin").setup()
 end)
 
 later(function()
-	-- Mini Move
 	require("mini.move").setup({ options = { reindent_linewise = false } })
 end)
 
 later(function()
-	-- Mini Operators
 	require("mini.operators").setup()
 end)
 
 later(function()
-	-- Mini Trailspace
 	require("mini.trailspace").setup()
 end)
 
 later(function()
-	-- Mini Visits
 	require("mini.visits").setup()
 end)
 
 later(function()
-	-- Mini Fuzzy
 	require("mini.fuzzy").setup()
 end)
 
 later(function()
-	-- Mini AI
 	local ai = require("mini.ai")
 	ai.setup({
 		custom_textobjects = {
@@ -420,7 +402,6 @@ later(function()
 end)
 
 later(function()
-	-- Mini Basics
 	require("mini.basics").setup({
 		options = {
 			basic = false,
@@ -434,7 +415,6 @@ later(function()
 end)
 
 later(function()
-	-- Mini Diff
 	require("mini.diff").setup()
 
 	local rhs = function()
@@ -445,7 +425,6 @@ later(function()
 end)
 
 later(function()
-	-- Mini Files
 	require("mini.files").setup({ windows = { preview = false } })
 
 	local minifiles_augroup = vim.api.nvim_create_augroup("ec-mini-files", {})
@@ -493,12 +472,10 @@ later(function()
 end)
 
 later(function()
-	-- Mini Misc auto root
 	MiniMisc.setup_auto_root()
 end)
 
 later(function()
-	-- Mini Pick
 	require("mini.pick").setup({
 		window = { config = { border = "double" } },
 	})
@@ -508,7 +485,6 @@ later(function()
 end)
 
 later(function()
-	-- Mini Surround
 	require("mini.surround").setup({ search_method = "cover_or_next" })
 	vim.keymap.set({ "n", "x" }, "s", "<Nop>")
 end)
@@ -535,7 +511,6 @@ later(function()
 	vim.cmd([[highlight PackageInfoOutdatedVersion guifg=]] .. "#d19a66")
 end)
 
--- Treesitter
 later(function()
 	vim.pack.add({
 		{
@@ -567,7 +542,6 @@ later(function()
 	})
 end)
 
--- GitSigns
 later(function()
 	vim.pack.add({
 		"https://github.com/lewis6991/gitsigns.nvim",
@@ -597,17 +571,6 @@ later(function()
 		automatic_installation = true,
 	})
 
-	-- Configure LSP servers before enabling them
-	-- vim.lsp.config("vtsls", {
-	-- 	settings = {
-	-- 		typescript = {
-	-- 			preferences = {
-	-- 				importModuleSpecifier = "relative",
-	-- 			},
-	-- 		},
-	-- 	},
-	-- })
-
 	vim.lsp.config("tailwindcss", {
 		settings = {
 			tailwindCSS = {
@@ -631,7 +594,6 @@ later(function()
 		},
 	})
 
-	-- Enable LSP servers
 	vim.lsp.enable({ "vtsls", "tailwindcss", "lua_ls" })
 end)
 
