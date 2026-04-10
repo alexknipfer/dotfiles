@@ -1,10 +1,7 @@
 -- =============================================================================
 -- BOOTSTRAP: mini.nvim (needed for mini.misc safely() utility)
 -- =============================================================================
-vim.pack.add({ "https://github.com/echasnovski/mini.nvim" })
-
--- Setup mini.misc (exports put, put_text, stat_summary, bench_time globally)
-require("mini.misc").setup({ make_global = { "put", "put_text", "stat_summary", "bench_time" } })
+vim.pack.add({ "https://github.com/nvim-mini/mini.misc" })
 
 -- Create lazy loading helpers using mini.misc.safely (as per blog post)
 local misc = require("mini.misc")
@@ -123,7 +120,7 @@ vim.o.shiftwidth = 2
 vim.g.copilot_no_tab_map = true
 
 -- Colorscheme
-vim.cmd("colorscheme kanagawa-dragon")
+vim.cmd("colorscheme kanagawa")
 
 -- Mini.nvim immediate setups
 require("mini.notify").setup()
@@ -469,10 +466,6 @@ later(function()
 			},
 		},
 	})
-end)
-
-later(function()
-	MiniMisc.setup_auto_root()
 end)
 
 later(function()

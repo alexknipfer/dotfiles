@@ -13,7 +13,7 @@
       "src": "https://github.com/folke/flash.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "4ed47e8c4c66c921dc1d6643977e0526e1f44396",
+      "rev": "8d82c240f190fc33723d48c308ccc1ed8baad69d",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "kanagawa.nvim": {
@@ -25,15 +25,19 @@
       "src": "https://github.com/kdheepak/lazygit.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "25f609e7fca78af7cede4f9fa3af8a94b1c4950b",
+      "rev": "0a3b42c3e503df87aef6d6513e13148381495c3a",
       "src": "https://github.com/williamboman/mason-lspconfig.nvim"
     },
     "mason.nvim": {
-      "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
+      "rev": "b03fb0f20bc1d43daf558cda981a2be22e73ac42",
       "src": "https://github.com/williamboman/mason.nvim"
     },
+    "mini.misc": {
+      "rev": "c72c90e083bcf24bfb2827d63b4752e414023f3e",
+      "src": "https://github.com/nvim-mini/mini.misc"
+    },
     "mini.nvim": {
-      "rev": "402ee6c6ec8ea44b22330446c8fb4e615fd3953e",
+      "rev": "69b7433355664cf76898eb86a12a019f39bd86d1",
       "src": "https://github.com/echasnovski/mini.nvim"
     },
     "nui.nvim": {
@@ -41,11 +45,11 @@
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
     "nvim-lspconfig": {
-      "rev": "9ccd58a7949091c0cc2777d4e92a45a209c808c1",
+      "rev": "cb5bc0b2b35a6d513e3298d285db81453e791f4f",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-tree.lua": {
-      "rev": "31503ad5d869fca61461d82a9126f62480ecb0ab",
+      "rev": "509962f21ab7289d8dcd28568af539be39a8c01e",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
@@ -54,7 +58,7 @@
       "version": "'master'"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "93d60a475f0b08a8eceb99255863977d3a25f310",
+      "rev": "851e865342e5a4cb1ae23d31caf6e991e1c99f1e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
     },
     "nvim-ts-context-commentstring": {
@@ -66,7 +70,7 @@
       "src": "https://github.com/vuki656/package-info.nvim"
     },
     "plenary.nvim": {
-      "rev": "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     }
   }
