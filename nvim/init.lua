@@ -315,10 +315,15 @@ later(function()
 end)
 
 later(function()
-	-- Mini Comment (depends on ts_context_commentstring)
 	vim.pack.add({
 		"https://github.com/JoosepAlviste/nvim-ts-context-commentstring",
 	})
+	require("ts_context_commentstring").setup({
+		enable_autocmd = false,
+	})
+end)
+
+later(function()
 	require("mini.comment").setup({
 		options = {
 			custom_commentstring = function()
@@ -494,32 +499,50 @@ end)
 
 later(function()
 	vim.pack.add({
-		{
-			src = "https://github.com/nvim-treesitter/nvim-treesitter",
-			version = "master",
-		},
+		"https://github.com/nvim-treesitter/nvim-treesitter",
 		"https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
 	})
+	vim.cmd.packadd("nvim-treesitter")
+	vim.cmd.packadd("nvim-treesitter-textobjects")
 
-	require("nvim-treesitter").setup({
-		ensure_installed = {
+	require("nvim-treesitter").install({
+		"bash",
+		"c",
+		"diff",
+		"html",
+		"javascript",
+		"lua",
+		"markdown",
+		"markdown_inline",
+		"query",
+		"tsx",
+		"typescript",
+		"vim",
+		"vimdoc",
+	})
+
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = {
 			"bash",
 			"c",
 			"diff",
 			"html",
+			"javascript",
+			"javascriptreact",
 			"lua",
 			"markdown",
 			"markdown_inline",
 			"query",
+			"tsx",
+			"typescript",
+			"typescriptreact",
 			"vim",
 			"vimdoc",
 		},
-		auto_install = true,
-		highlight = {
-			enable = true,
-			additional_vim_regex_highlighting = { "ruby" },
-		},
-		indent = { enable = true, disable = { "ruby" } },
+		callback = function(args)
+			vim.treesitter.start(args.buf)
+			vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+		end,
 	})
 end)
 
