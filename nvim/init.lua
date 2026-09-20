@@ -77,7 +77,7 @@ end
 -- Add immediate plugins
 vim.pack.add({
 	"https://github.com/echasnovski/mini.nvim",
-	"https://github.com/rebelot/kanagawa.nvim",
+	"https://github.com/tiagovla/tokyodark.nvim",
 	"https://github.com/github/copilot.vim",
 })
 
@@ -120,7 +120,7 @@ vim.o.shiftwidth = 2
 vim.g.copilot_no_tab_map = true
 
 -- Colorscheme
-vim.cmd("colorscheme kanagawa")
+vim.cmd("colorscheme tokyodark")
 
 -- Mini.nvim immediate setups
 require("mini.notify").setup()
@@ -318,6 +318,7 @@ later(function()
 	vim.pack.add({
 		"https://github.com/JoosepAlviste/nvim-ts-context-commentstring",
 	})
+	vim.cmd.packadd("nvim-ts-context-commentstring")
 	require("ts_context_commentstring").setup({
 		enable_autocmd = false,
 	})
