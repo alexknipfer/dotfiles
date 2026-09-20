@@ -77,7 +77,7 @@ end
 -- Add immediate plugins
 vim.pack.add({
 	"https://github.com/echasnovski/mini.nvim",
-	"https://github.com/tiagovla/tokyodark.nvim",
+	"https://github.com/rebelot/kanagawa.nvim",
 	"https://github.com/github/copilot.vim",
 })
 
@@ -104,7 +104,7 @@ vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.list = true
+vim.opt.list = false
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
@@ -120,7 +120,7 @@ vim.o.shiftwidth = 2
 vim.g.copilot_no_tab_map = true
 
 -- Colorscheme
-vim.cmd("colorscheme tokyodark")
+vim.cmd("colorscheme kanagawa-dragon")
 
 -- Mini.nvim immediate setups
 require("mini.notify").setup()
