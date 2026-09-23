@@ -7,11 +7,24 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
   "icon_theme": "Colored Zed Icons Theme Dark",
   "experimental.theme_overrides": {
     // "element.hover": "#363c46"
   },
   "agent": {
+    "dock": "right",
     "always_allow_tool_actions": true,
     "default_profile": "write",
     "model_parameters": [],
