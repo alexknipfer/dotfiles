@@ -289,9 +289,9 @@ end, { desc = "Update all packages" })
 
 vim.api.nvim_create_user_command("PackClean", function()
 	local inactive = {}
-	for name, info in pairs(vim.pack.get()) do
+	for _, info in ipairs(vim.pack.get()) do
 		if not info.active then
-			table.insert(inactive, name)
+			table.insert(inactive, info.spec.name)
 		end
 	end
 	if #inactive > 0 then
@@ -655,6 +655,44 @@ later(function()
 	vim.keymap.set({ "n", "x", "o" }, "S", function()
 		require("flash").treesitter()
 	end, { desc = "Flash Treesitter" })
+end)
+
+-- Sidekick
+later(function()
+	vim.pack.add({
+		"https://github.com/folke/sidekick.nvim",
+	})
+
+	require("sidekick").setup({
+		-- No Copilot LSP configured, so Next Edit Suggestions stay off; this is
+		-- purely for the OpenCode CLI integration.
+		nes = { enabled = false },
+	})
+
+	vim.keymap.set({ "n", "x" }, "<Leader>aa", function()
+		require("sidekick.cli").toggle({ name = "opencode", focus = true })
+	end, { desc = "Toggle OpenCode" })
+	vim.keymap.set({ "n", "x" }, "<Leader>as", function()
+		require("sidekick.cli").select()
+	end, { desc = "Select CLI tool" })
+	vim.keymap.set("n", "<Leader>ad", function()
+		require("sidekick.cli").close({ name = "opencode" })
+	end, { desc = "Detach OpenCode session" })
+	vim.keymap.set({ "n", "t", "i", "x" }, "<C-.>", function()
+		require("sidekick.cli").focus()
+	end, { desc = "Focus CLI window" })
+	vim.keymap.set({ "n", "x" }, "<Leader>at", function()
+		require("sidekick.cli").send({ msg = "{this}" })
+	end, { desc = "Send this to CLI" })
+	vim.keymap.set("n", "<Leader>af", function()
+		require("sidekick.cli").send({ msg = "{file}" })
+	end, { desc = "Send file to CLI" })
+	vim.keymap.set("x", "<Leader>av", function()
+		require("sidekick.cli").send({ msg = "{selection}" })
+	end, { desc = "Send selection to CLI" })
+	vim.keymap.set({ "n", "x" }, "<Leader>ap", function()
+		require("sidekick.cli").prompt()
+	end, { desc = "Sidekick prompt" })
 end)
 
 -- Mini Completion (load early so it's ready when LSP attaches)
