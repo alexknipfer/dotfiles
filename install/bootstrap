@@ -1,4 +1,4 @@
- g!/usr/bin/env bash
+#!/usr/bin/env bash
 
 cd "$(dirname "$0")/.."
 DOTFILES=$(pwd -P)
@@ -125,6 +125,11 @@ install_dotfiles () {
         src=$(eval echo "$line" | cut -d '=' -f 1)
         dst=$(eval echo "$line" | cut -d '=' -f 2)
         dir=$(dirname "$dst")
+
+        # skip blank lines and malformed entries so they can't abort the loop
+        if [ -z "$src" ] || [ -z "$dst" ]; then
+          continue
+        fi
 
         mkdir -p "$dir"
         link_file "$src" "$dst"
