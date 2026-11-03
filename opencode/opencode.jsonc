@@ -1,15 +1,15 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": true,
-  "model": "vercel/deepseek/deepseek-v4.1-flash",
+  "model": "anthropic/claude-sonnet-5.5",
   "provider": {
     "vercel": {
       "options": {
         "apiKey": "{env:VERCEL_AI_GATEWAY_API_KEY}"
       },
       "models": {
-        "anthropic/claude-sonnet-4.6": {
-          "name": "Claude Sonnet 4.6"
+        "anthropic/claude-sonnet-5.5": {
+          "name": "Claude Sonnet 5.5"
         },
         "moonshotai/kimi-k2.5": {
           "name": "Kimi K2.5"
