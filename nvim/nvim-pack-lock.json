@@ -25,7 +25,7 @@
       "src": "https://github.com/kdheepak/lazygit.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "3a5cd6d562a01f6829a35ae761dc383264ea452b",
+      "rev": "55eceab8975036ac43a4176cbfe0d4bf1ddae93f",
       "src": "https://github.com/williamboman/mason-lspconfig.nvim"
     },
     "mason.nvim": {
@@ -33,11 +33,11 @@
       "src": "https://github.com/williamboman/mason.nvim"
     },
     "mini.misc": {
-      "rev": "1e9cae4ee48176252a7ddee28133cf9764b74c58",
+      "rev": "30236840a4791fc1a5ff628eda0a15a39a453345",
       "src": "https://github.com/nvim-mini/mini.misc"
     },
     "mini.nvim": {
-      "rev": "a321b535c75ca88ba7fddfd8eb5b583fbda50dd6",
+      "rev": "f9ac12d7cbd2563cfc2cce9a8152fc8df2ad0d6f",
       "src": "https://github.com/echasnovski/mini.nvim"
     },
     "nui.nvim": {
@@ -45,15 +45,15 @@
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
     "nvim-lspconfig": {
-      "rev": "cc404d425c7752f56b8eaa269107be44d888ea51",
+      "rev": "993d048db0d83d8e8ba3f9cb376456321acdcce3",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-tree.lua": {
-      "rev": "69eb0c34ed3d836d5a0d92d913b77dd73b054f2f",
+      "rev": "7e1da84aaffb413e1fa47b3895e5caa12501142d",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
-      "rev": "610734c5d3e59761d5f79318d120633374537fa5",
+      "rev": "19bdfc04f40ed2ccb3340591d125f759b0406875",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-textobjects": {
