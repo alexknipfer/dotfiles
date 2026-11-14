@@ -77,7 +77,7 @@ end
 -- Add immediate plugins
 vim.pack.add({
 	"https://github.com/echasnovski/mini.nvim",
-	"https://github.com/rebelot/kanagawa.nvim",
+	{ src = "https://github.com/rose-pine/neovim", name = "rose-pine" },
 	"https://github.com/github/copilot.vim",
 })
 
@@ -121,7 +121,10 @@ vim.o.shiftwidth = 2
 vim.g.copilot_no_tab_map = true
 
 -- Colorscheme
-vim.cmd("colorscheme kanagawa-dragon")
+require("rose-pine").setup({
+	variant = "auto",
+})
+vim.cmd("colorscheme rose-pine")
 
 -- Mini.nvim immediate setups
 require("mini.notify").setup()
