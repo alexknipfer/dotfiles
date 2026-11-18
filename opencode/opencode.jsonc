@@ -25,12 +25,14 @@
       "browse": {
         "type": "local",
         "command": [
-          "/Users/alexanderknipfer/.local/bin/browse",
+          "browse",
           "mcp"
         ],
         "environment": {
           "OPENCODE_BROWSER_RUNTIME": "auto-update"
-        }
+        },
+        "cwd": "{env:HOME}",
+        "pool": true
       }
     }
   }
