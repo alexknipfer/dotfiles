@@ -39,3 +39,11 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(/opt/homebrew/bin/mise activate zsh)"
 
 bindkey -s '^f' 'tmux-sessionizer\n'
+
+# pnpm
+export PNPM_HOME='/Users/alexknipfer/Library/pnpm'
+case ":$PATH:" in
+  ":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
