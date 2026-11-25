@@ -699,6 +699,16 @@ later(function()
 	end, { desc = "Sidekick prompt" })
 end)
 
+-- Markdown rendering
+later(function()
+	vim.pack.add({
+		"https://github.com/MeanderingProgrammer/render-markdown.nvim",
+	})
+	require("render-markdown").setup({
+		file_types = { "markdown" },
+	})
+end)
+
 -- Mini Completion (load early so it's ready when LSP attaches)
 later(function()
 	vim.opt.iskeyword:append("-")
